@@ -1,69 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANKA HYDRA | Vehicle Technology</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANKA PROJECTS | Innovation Platform</title>
+
 <style>
-body{margin:0;background:#050912;color:#eef6ff;font-family:Arial,sans-serif;line-height:1.6}
-nav{padding:20px 8%;border-bottom:1px solid #1b3852;font-weight:bold;letter-spacing:2px}
-nav span,h2{color:#35b9ff}
-.hero,section{max-width:1100px;margin:auto;padding:80px 8%}
-h1{font-size:clamp(44px,8vw,80px);line-height:1;margin:15px 0}
-h2{font-size:34px}.tag{color:#35b9ff;letter-spacing:3px;text-transform:uppercase}
-p{color:#a9bdd0;font-size:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{background:#0b1422;border:1px solid #1b3852;border-radius:12px;padding:25px}
-.card h3{margin-top:0}
-.vehicle b{color:#35b9ff}
-footer{text-align:center;padding:35px;border-top:1px solid #1b3852;color:#a9bdd0}
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#050912;
+color:#eef6ff;
+font-family:Arial,sans-serif;
+line-height:1.6
+}
+nav{
+position:sticky;
+top:0;
+z-index:10;
+padding:18px 7%;
+background:#07101c;
+border-bottom:1px solid #1b3852;
+font-size:20px;
+font-weight:bold;
+letter-spacing:2px
+}
+nav span{color:#35b9ff}
+
+.hero{
+max-width:1200px;
+margin:auto;
+padding:90px 7% 70px;
+text-align:center
+}
+.logo{
+font-size:18px;
+color:#35b9ff;
+letter-spacing:5px;
+font-weight:bold
+}
+h1{
+font-size:clamp(42px,9vw,82px);
+line-height:1;
+margin:18px 0
+}
+.hero h1 span{color:#35b9ff}
+.hero p{
+max-width:850px;
+margin:25px auto;
+color:#a9bdd0;
+font-size:19px
+}
+
+section{
+max-width:1200px;
+margin:auto;
+padding:65px 7%
+}
+.tag{
+color:#35b9ff;
+letter-spacing:3px;
+text-transform:uppercase;
+font-weight:bold
+}
+h2{
+font-size:36px;
+margin-top:8px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px
+}
+
+.card{
+background:linear-gradient(145deg,#0b1625,#08101b);
+border:1px solid #1b3852;
+border-radius:16px;
+padding:25px;
+box-shadow:0 8px 30px #0005
+}
+.card h3{
+font-size:23px;
+margin:0 0 8px;
+color:#fff
+}
+.card p{
+color:#a9bdd0;
+margin-bottom:18px
+}
+.code{
+color:#35b9ff;
+font-size:14px;
+font-weight:bold;
+letter-spacing:2px
+}
+
+button{
+border:1px solid #35b9ff;
+background:#0b1d2c;
+color:#35b9ff;
+padding:11px 16px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer
+}
+button:hover{
+background:#35b9ff;
+color:#03101b
+}
+
+.feature{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px
+}
+.feature div{
+padding:20px;
+background:#08121f;
+border-left:3px solid #35b9ff;
+border-radius:8px
+}
+
+.contact{
+text-align:center;
+background:#08121f;
+border-top:1px solid #1b3852;
+border-bottom:1px solid #1b3852
+}
+
+footer{
+text-align:center;
+padding:35px;
+color:#8095a8;
+font-size:14px
+}
+
+@media(max-width:600px){
+section{padding:45px 6%}
+.hero{padding:65px 6% 50px}
+h2{font-size:30px}
+.card{padding:20px}
+}
 </style>
 </head>
+
 <body>
 
-<nav>ANKA <span>HYDRA</span></nav>
+<nav>
+ANKA <span>PROJECTS</span>
+</nav>
 
 <header class="hero">
-<div class="tag">Turkiye · Vehicle Technology Platform</div>
-<h1>Engineering the next generation of mobility.</h1>
-<p>ANKA HYDRA is developing a modular vehicle technology platform combining electric propulsion, hydrogen/fuel-cell technologies, ADAS and advanced vehicle systems for passenger, commercial and heavy-duty applications.</p>
+<div class="logo">ANKA INNOVATION PLATFORM</div>
+
+<h1>
+Engineering the <span>Future.</span>
+</h1>
+
+<p>
+ANKA PROJECTS; ulaşım, tarım, afet yönetimi, enerji,
+sağlık teknolojileri ve doğal afetlere yönelik yenilikçi
+teknoloji projelerini tek bir platform altında geliştirmektedir.
+</p>
 </header>
 
-<section>
-<div class="tag">Core Technologies</div>
-<h2>One platform. Multiple applications.</h2>
-<div class="grid">
-<div class="card"><h3>Electric Propulsion</h3><p>Modular electric propulsion concepts for efficient and adaptable vehicle platforms.</p></div>
-<div class="card"><h3>Hydrogen / Fuel Cell</h3><p>Low-emission mobility technology for commercial and heavy-duty applications.</p></div>
-<div class="card"><h3>ADAS</h3><p>Advanced driver-assistance technologies focused on safety and driver support.</p></div>
-<div class="card"><h3>Modular Architecture</h3><p>An adaptable vehicle architecture supporting multiple vehicle categories.</p></div>
-</div>
-</section>
 
 <section>
-<div class="tag">ANKA HYDRA Family</div>
-<h2>A scalable vehicle family.</h2>
-<div class="grid">
-<div class="card vehicle"><b>HYDRA-1</b><br>City Vehicle</div>
-<div class="card vehicle"><b>HYDRA-X</b><br>SUV / Off-Road</div>
-<div class="card vehicle"><b>HYDRA-R</b><br>Performance</div>
-<div class="card vehicle"><b>HYDRA-T</b><br>Commercial</div>
-<div class="card vehicle"><b>HYDRA-VAN</b><br>Multipurpose</div>
-<div class="card vehicle"><b>HYDRA-BUS</b><br>Public Transport</div>
-<div class="card vehicle"><b>HYDRA-TRUCK</b><br>Heavy Transport</div>
-</div>
-</section>
+<div class="tag">01 · Mobility</div>
+<h2>ANKA HYDRA</h2>
 
-<section>
-<div class="tag">Investment & Partnerships</div>
-<h2>Strategic technology partnerships.</h2>
-<p>ANKA HYDRA is currently in the technology development and prototype preparation stage. We are seeking strategic investment, engineering collaboration, prototype validation, manufacturing expertise and international industry partnerships.</p>
 <div class="card">
-<h3>Contact</h3>
-<p>Murat Coskun · Founder, ANKA HYDRA<br>Malatya, Turkiye<br>coskunmurat521@gmail.com</p>
+<div class="code">ANKA HYDRA FAMILY</div>
+<h3>Yeni Nesil Araç Teknolojileri</h3>
+<p>
+Modüler araç platformu; şehir otomobili, SUV, performans,
+ticari araç, VAN, otobüs ve ağır taşıma uygulamaları için
+geliştirilmektedir. Elektrikli tahrik, hidrojen/yakıt hücresi,
+ADAS ve gelişmiş araç sistemleri üzerine odaklanır.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>HYDRA-1</h3>
+<p>Şehir içi kullanım için kompakt araç platformu.</p>
+<button onclick="copyText('HYDRA-1 - City Vehicle')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-X</h3>
+<p>SUV ve arazi kullanımına yönelik araç.</p>
+<button onclick="copyText('HYDRA-X - SUV / Off-Road')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-R</h3>
+<p>Performans odaklı araç platformu.</p>
+<button onclick="copyText('HYDRA-R - Performance Vehicle')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-T</h3>
+<p>Ticari kullanım için araç platformu.</p>
+<button onclick="copyText('HYDRA-T - Commercial Vehicle')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-VAN</h3>
+<p>Çok amaçlı VAN platformu.</p>
+<button onclick="copyText('HYDRA-VAN - Multipurpose Van')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-BUS</h3>
+<p>Toplu taşıma uygulamaları.</p>
+<button onclick="copyText('HYDRA-BUS - Public Transport')">METNİ KOPYALA</button>
+</div>
+
+<div class="card">
+<h3>HYDRA-TRUCK</h3>
+<p>Ağır taşıma uygulamalarına yönelik platform.</p>
+<button onclick="copyText('HYDRA-TRUCK - Heavy Transport')">METNİ KOPYALA</button>
+</div>
+
+</div>
 </div>
 </section>
 
-<footer>© 2026 ANKA HYDRA · Vehicle Technology Platform · Turkiye</footer>
+
+<section>
+<div class="tag">02 · Agriculture</div>
+<h2>ANKA ASI-01 PRO</h2>
+
+<div class="card">
+<h3>Akıllı Tarım Teknolojisi</h3>
+<p>
+Tarım alanlarında akıllı gübreleme, hedefli sulama,
+su tasarrufu ve verimli kaynak kullanımına yönelik
+teknoloji projesidir.
+</p>
+<button onclick="copyText('ANKA ASI-01 PRO - Akıllı Tarım, Akıllı Gübreleme ve Akıllı Sulama')">
+METNİ KOPYALA
+</button>
+</div>
+</section>
+
+
+<section>
+<div class="tag">03 · Disaster Technology</div>
+<h2>ANKA Afet Teknolojileri</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="code">ZEMRA</div>
+<h3>Deprem Teknolojisi</h3>
+<p>
+Deprem risklerinin izlenmesi, erken uyarı ve afet yönetimi
+alanlarında geliştirilmesi planlanan teknoloji projesi.
+</p>
+<button onclick="copyText('ZEMRA - Deprem ve Afet Teknolojileri')">
+METNİ KOPYALA
+</button>
+</div>
+
+<div class="card">
+<div class="code">ANKA VOLKAN</div>
+<h3>Volkan Teknolojisi</h3>
+<p>
+Volkanik faaliyetlerin izlenmesi ve afet yönetimine
+yönelik teknoloji konsepti.
+</p>
+<button onclick="copyText('ANKA VOLKAN - Volkan İzleme ve Afet Teknolojisi')">
+METNİ KOPYALA
+</button>
+</div>
+
+<div class="card">
+<div class="code">ANKA SEL</div>
+<h3>Sel Teknolojisi</h3>
+<p>
+Sel ve taşkın risklerinin izlenmesi ve müdahale
+süreçlerine yönelik teknoloji konsepti.
+</p>
+<button onclick="copyText('ANKA SEL - Sel ve Taşkın Teknolojisi')">
+METNİ KOPYALA
+</button>
+</div>
+
+<div class="card">
+<div class="code">ANKA ÇIĞ</div>
+<h3>Çığ Teknolojisi</h3>
+<p>
+Çığ risklerinin izlenmesi ve afet yönetimi için
+geliştirilmesi planlanan teknoloji konsepti.
+</p>
+<button onclick="copyText('ANKA ÇIĞ - Çığ İzleme ve Afet Teknolojisi')">
+METNİ KOPYALA
+</button>
+</div>
+
+</div>
+</section>
+
+
+<section>
+<div class="tag">04 · Health & Mobility</div>
+<h2>ANKA REWALK</h2>
+
+<div class="card">
+<h3>Yürüme Destek Teknolojisi</h3>
+<p>
+Yürüme desteğine ihtiyaç duyan kişiler için robotik,
+mekatronik ve yardımcı hareket teknolojileri üzerine
+geliştirilen ayrı ANKA projesidir.
+</p>
+<button onclick="copyText('ANKA REWALK - Yürüme Destek ve Ekzoskeleton Teknolojisi')">
+METNİ KOPYALA
+</button>
+</div>
+</section>
+
+
+<section>
+<div class="tag">05 · Energy & Technology</div>
+<h2>ANKA D POWER</h2>
+
+<div class="card">
+<h3>Enerji ve Güç Teknolojileri</h3>
+<p>
+ANKA PROJECTS çatısı altında geliştirilen enerji,
+güç aktarımı ve yeni nesil teknoloji çözümlerinin
+araştırılması için oluşturulan proje alanıdır.
+</p>
+<button onclick="copyText('ANKA D POWER - Energy and Power Technologies')">
+METNİ KOPYALA
+</button>
+</div>
+</section>
+
+
+<section>
+<div class="tag">Technology Areas</div>
+<h2>Geliştirme Alanlarımız</h2>
+
+<div class="feature">
+<div>⚡ Elektrikli Tahrik</div>
+<div>💧 Hidrojen / Yakıt Hücresi</div>
+<div>🛡️ ADAS ve Güvenlik</div>
+<div>🌱 Akıllı Tarım</div>
+<div>🌍 Afet Teknolojileri</div>
+<div>🤖 Robotik ve Mekatronik</div>
+<div>🔋 Enerji Teknolojileri</div>
+<div>🚗 Yeni Nesil Mobilite</div>
+</div>
+</section>
+
+
+<section class="contact">
+<div class="tag">Investment & Partnerships</div>
+<h2>Yatırım ve İş Birliği</h2>
+
+<p>
+ANKA PROJECTS; teknoloji geliştirme, prototip,
+mühendislik, yatırım, üretim ve uluslararası
+iş birliklerine açıktır.
+</p>
+
+<div class="card">
+<h3>Kurucu</h3>
+<p>
+Murat Coşkun<br>
+ANKA PROJECTS<br>
+Malatya · Türkiye
+</p>
+
+<button onclick="copyText('ANKA PROJECTS - Murat Coşkun - Malatya, Türkiye')">
+İLETİŞİM BİLGİSİNİ KOPYALA
+</button>
+</div>
+</section>
+
+
+<footer>
+© 2026 ANKA PROJECTS · Türkiye
+</footer>
+
+
+<script>
+function copyText(text){
+navigator.clipboard.writeText(text)
+.then(function(){
+alert("Metin kopyalandı.");
+})
+.catch(function(){
+alert("Kopyalama başarısız oldu.");
+});
+}
+</script>
+
 </body>
-</html>
+  </html>
