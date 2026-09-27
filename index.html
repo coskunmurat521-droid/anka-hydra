@@ -6,556 +6,354 @@
 
 <title>ANKA PROJECTS | Yenilikçi Teknoloji Projeleri</title>
 
-<meta name="description" content="ANKA PROJECTS; ANKA HYDRA, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, ANKA REWALK ve ANKA D-POWER teknoloji projelerini geliştiren yenilik platformudur.">
-
-<meta name="keywords" content="ANKA PROJECTS, ANKA HYDRA, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, ANKA REWALK, ANKA D-POWER, teknoloji projeleri, yapay zeka, afet teknolojileri, akıllı tarım, elektrikli araç">
-
+<meta name="description" content="ANKA PROJECTS - Mobilite, tarım, afet teknolojileri, sağlık ve enerji alanlarında yenilikçi teknoloji projeleri.">
+<meta name="keywords" content="ANKA PROJECTS, ANKA HYDRA, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, ANKA REWALK, ANKA D-POWER">
 <meta name="author" content="Murat Coşkun">
 
 <style>
 *{box-sizing:border-box}
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-margin:0;
-background:#050912;
-color:#eef6ff;
-font-family:Arial,sans-serif;
-line-height:1.6;
+    margin:0;
+    background:#050912;
+    color:#eef6ff;
+    font-family:Arial,sans-serif;
+    line-height:1.6;
 }
 
-nav{
-position:sticky;
-top:0;
-z-index:100;
-padding:16px 6%;
-background:#07101c;
-border-bottom:1px solid #1d3b56;
-display:flex;
-justify-content:space-between;
-align-items:center;
+header{
+    text-align:center;
+    padding:35px 20px 25px;
+    border-bottom:1px solid #183552;
+    position:sticky;
+    top:0;
+    background:rgba(5,9,18,.96);
+    z-index:10;
 }
 
 .logo{
-font-size:21px;
-font-weight:bold;
-letter-spacing:2px;
+    font-size:38px;
+    font-weight:bold;
+    letter-spacing:6px;
 }
 
-.logo span{
-color:#35b9ff;
+.logo span{color:#27a9ff}
+
+nav{
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
 }
 
 nav a{
-color:#cfe8ff;
-text-decoration:none;
-margin-left:18px;
-font-size:14px;
+    color:#c8ddf2;
+    text-decoration:none;
+    font-size:18px;
 }
+
+nav a:hover{color:#29aaff}
 
 .hero{
-text-align:center;
-padding:90px 7% 80px;
-background:
-radial-gradient(circle at top,#123b5d 0,#07101c 45%,#050912 100%);
-}
-
-.hero small{
-color:#35b9ff;
-letter-spacing:4px;
-font-weight:bold;
+    text-align:center;
+    padding:80px 20px 55px;
 }
 
 .hero h1{
-font-size:clamp(45px,9vw,86px);
-line-height:1;
-margin:20px 0;
+    font-size:58px;
+    margin:0 0 20px;
 }
 
-.hero h1 span{
-color:#35b9ff;
-}
+.hero h1 span{color:#29aaff}
 
 .hero p{
-max-width:850px;
-margin:auto;
-color:#aec3d5;
-font-size:19px;
+    max-width:850px;
+    margin:auto;
+    color:#aebfd2;
+    font-size:20px;
 }
 
-.hero-buttons{
-margin-top:30px;
+.projects{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
 }
 
-.btn{
-display:inline-block;
-padding:13px 22px;
-margin:6px;
-border:1px solid #35b9ff;
-border-radius:9px;
-color:#35b9ff;
-text-decoration:none;
-font-weight:bold;
+.project{
+    background:#0a1625;
+    border:1px solid #193c5d;
+    border-radius:24px;
+    margin:35px 0;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
 }
 
-.btn:hover{
-background:#35b9ff;
-color:#03101b;
+.project-image{
+    width:100%;
+    height:300px;
+    background:linear-gradient(135deg,#0b2137,#07101d);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3dafff;
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:2px;
 }
 
-section{
-max-width:1200px;
-margin:auto;
-padding:70px 6%;
+.project-content{
+    padding:32px;
 }
 
-.tag{
-color:#35b9ff;
-font-size:13px;
-font-weight:bold;
-letter-spacing:3px;
-text-transform:uppercase;
+.number{
+    color:#29aaff;
+    font-size:15px;
+    font-weight:bold;
+    letter-spacing:3px;
 }
 
 h2{
-font-size:36px;
-margin:8px 0 30px;
+    font-size:32px;
+    margin:10px 0 18px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
+.project p{
+    color:#b6c7d8;
+    font-size:18px;
 }
 
-.card{
-background:linear-gradient(145deg,#0c1828,#08111d);
-border:1px solid #1b3852;
-border-radius:16px;
-padding:25px;
-box-shadow:0 8px 28px #0006;
+.models{
+    color:#8fd1ff;
+    margin-top:20px;
+    font-size:17px;
 }
 
-.card h3{
-margin-top:0;
-font-size:23px;
+.button{
+    display:inline-block;
+    margin-top:22px;
+    padding:12px 22px;
+    border:1px solid #29aaff;
+    border-radius:10px;
+    color:#29aaff;
+    text-decoration:none;
 }
 
-.card p{
-color:#a9bdd0;
-}
-
-.code{
-color:#35b9ff;
-font-size:13px;
-font-weight:bold;
-letter-spacing:2px;
-}
-
-.copy{
-border:1px solid #35b9ff;
-background:#0b1d2c;
-color:#35b9ff;
-padding:10px 15px;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.copy:hover{
-background:#35b9ff;
-color:#03101b;
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-gap:15px;
-}
-
-.feature{
-padding:20px;
-background:#08121f;
-border-left:3px solid #35b9ff;
-border-radius:8px;
-}
-
-.contact{
-text-align:center;
-background:#08121f;
-border-top:1px solid #1b3852;
-border-bottom:1px solid #1b3852;
+.button:hover{
+    background:#29aaff;
+    color:#04101c;
 }
 
 footer{
-text-align:center;
-padding:35px;
-color:#8095a8;
-font-size:14px;
+    text-align:center;
+    padding:45px 20px;
+    margin-top:50px;
+    border-top:1px solid #183552;
+    color:#8298ad;
 }
 
-@media(max-width:650px){
-nav{
-display:block;
-text-align:center;
-}
-
-nav a{
-display:inline-block;
-margin-top:10px;
-}
-
-section{
-padding:50px 6%;
-}
-
-.hero{
-padding:65px 6%;
-}
+@media(max-width:600px){
+    .logo{font-size:27px}
+    .hero h1{font-size:40px}
+    .hero p{font-size:17px}
+    .project-image{height:220px}
+    .project-content{padding:24px}
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-<div class="logo">ANKA <span>PROJECTS</span></div>
+<header>
+    <div class="logo">ANKA <span>PROJECTS</span></div>
 
-<div>
-<a href="#hydra">HYDRA</a>
-<a href="#tarim">TARIM</a>
-<a href="#afet">AFET</a>
-<a href="#rewalk">REWALK</a>
-<a href="#d-power">D-POWER</a>
-</div>
-</nav>
-
-<header class="hero">
-
-<small>ANKA INNOVATION PLATFORM</small>
-
-<h1>
-Engineering the <span>Future.</span>
-</h1>
-
-<p>
-ANKA PROJECTS; ulaşım, akıllı tarım, afet yönetimi,
-enerji, robotik, sağlık teknolojileri ve yeni nesil
-mobilite alanlarında yenilikçi teknoloji projeleri
-geliştirmektedir.
-</p>
-
-<div class="hero-buttons">
-<a class="btn" href="#projeler">PROJELERİ GÖR</a>
-<a class="btn" href="#iletisim">İŞ BİRLİĞİ</a>
-</div>
-
+    <nav>
+        <a href="#hydra">HYDRA</a>
+        <a href="#tarim">TARIM</a>
+        <a href="#afet">AFET</a>
+        <a href="#rewalk">REWALK</a>
+        <a href="#dpower">D-POWER</a>
+    </nav>
 </header>
 
-
-<section id="projeler">
-
-<div class="tag">ANKA PROJECTS</div>
-
-<h2>Projelerimiz</h2>
-
-<div class="grid">
-
-
-<div class="card" id="hydra">
-
-<div class="code">01 · MOBILITY</div>
-
-<h3>ANKA HYDRA</h3>
-
-<p>
-Yeni nesil elektrikli, hidrojen/yakıt hücreli,
-ADAS ve modüler araç teknolojileri platformu.
-</p>
-
-<p>
-HYDRA-1 · HYDRA-X · HYDRA-R · HYDRA-T ·
-HYDRA-VAN · HYDRA-BUS · HYDRA-TRUCK
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA HYDRA - Yeni Nesil Araç Teknolojileri')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card" id="tarim">
-
-<div class="code">02 · AGRICULTURE</div>
-
-<h3>ANKA ASI-01 PRO</h3>
-
-<p>
-Akıllı gübreleme, hedefli sulama, su tasarrufu
-ve verimli tarımsal kaynak kullanımına yönelik
-teknoloji projesi.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA ASI-01 PRO - Akıllı Tarım Teknolojileri')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card" id="afet">
-
-<div class="code">03 · DISASTER TECHNOLOGY</div>
-
-<h3>ZEMRA</h3>
-
-<p>
-Deprem risklerinin izlenmesi, erken uyarı ve
-afet yönetimi için geliştirilen teknoloji projesi.
-</p>
-
-<button class="copy"
-onclick="copyText('ZEMRA - Deprem ve Afet Teknolojileri')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="code">04 · VOLCANO</div>
-
-<h3>ANKA VOLKAN</h3>
-
-<p>
-Volkanik faaliyetlerin izlenmesi, risk analizi
-ve erken uyarı teknolojileri konsepti.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA VOLKAN - Volkan İzleme Teknolojisi')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="code">05 · FLOOD</div>
-
-<h3>ANKA SEL</h3>
-
-<p>
-Sel ve taşkın risklerinin izlenmesi, erken uyarı
-ve afet müdahalesine yönelik teknoloji projesi.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA SEL - Sel ve Taşkın Teknolojileri')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="code">06 · AVALANCHE</div>
-
-<h3>ANKA ÇIĞ</h3>
-
-<p>
-Çığ risklerinin izlenmesi, sensör sistemleri
-ve erken uyarı teknolojileri konsepti.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA ÇIĞ - Çığ Erken Uyarı Teknolojisi')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card" id="rewalk">
-
-<div class="code">07 · HEALTH & ROBOTICS</div>
-
-<h3>ANKA REWALK</h3>
-
-<p>
-Yürüme desteğine ihtiyaç duyan kişiler için
-robotik, mekatronik ve ekzoskeleton teknolojileri.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA REWALK - Yürüme Destek ve Ekzoskeleton Teknolojisi')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-
-<div class="card" id="d-power">
-
-<div class="code">08 · ENERGY & POWER</div>
-
-<h3>ANKA D-POWER</h3>
-
-<p>
-Motor verimliliği, enerji optimizasyonu,
-güç aktarımı ve yeni nesil motor teknolojileri.
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA D-POWER - Motor Verimliliği ve Enerji Optimizasyonu')">
-METNİ KOPYALA
-</button>
-
-</div>
-
-</div>
-
+<section class="hero">
+    <h1>Projelerimiz</h1>
+    <p>
+        Geleceğin mobilite, tarım, afet, sağlık ve enerji
+        teknolojileri için geliştirilen ANKA PROJECTS platformu.
+    </p>
 </section>
 
+<main class="projects">
 
-<section>
+<!-- HYDRA -->
+<section class="project" id="hydra">
+    <div class="project-image">
+        ANKA HYDRA GÖRSELİ
+    </div>
 
-<div class="tag">HYDRA FAMILY</div>
+    <div class="project-content">
+        <div class="number">01 · MOBILITY</div>
+        <h2>ANKA HYDRA</h2>
 
-<h2>ANKA HYDRA Araç Ailesi</h2>
+        <p>
+            Yeni nesil elektrikli, hidrojen/yakıt hücreli,
+            ADAS ve modüler araç teknolojileri platformu.
+        </p>
 
-<div class="grid">
+        <div class="models">
+            HYDRA-1 · HYDRA-X · HYDRA-R · HYDRA-T ·
+            HYDRA-VAN · HYDRA-BUS · HYDRA-TRUCK
+        </div>
 
-<div class="card">
-<h3>HYDRA-1</h3>
-<p>Şehir içi kompakt araç platformu.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-X</h3>
-<p>SUV ve arazi kullanımına yönelik platform.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-R</h3>
-<p>Performans odaklı araç platformu.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-T</h3>
-<p>Ticari araç platformu.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-VAN</h3>
-<p>Çok amaçlı VAN platformu.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-BUS</h3>
-<p>Toplu taşıma uygulamalarına yönelik platform.</p>
-</div>
-
-<div class="card">
-<h3>HYDRA-TRUCK</h3>
-<p>Ağır taşıma uygulamalarına yönelik platform.</p>
-</div>
-
-</div>
-
+        <a class="button" href="#hydra">Proje Detayı</a>
+    </div>
 </section>
 
+<!-- ASI -->
+<section class="project" id="tarim">
+    <div class="project-image">
+        ANKA ASI-01 PRO GÖRSELİ
+    </div>
 
-<section>
+    <div class="project-content">
+        <div class="number">02 · AGRICULTURE</div>
+        <h2>ANKA ASI-01 PRO</h2>
 
-<div class="tag">TECHNOLOGY</div>
+        <p>
+            Akıllı tarım, hedefli gübreleme ve sulama,
+            su tasarrufu ve verimli tarımsal üretim
+            teknolojileri üzerine geliştirilen proje.
+        </p>
 
-<h2>Geliştirme Alanlarımız</h2>
-
-<div class="features">
-
-<div class="feature">⚡ Elektrikli Tahrik</div>
-<div class="feature">💧 Hidrojen / Yakıt Hücresi</div>
-<div class="feature">🛡️ ADAS ve Güvenlik</div>
-<div class="feature">🌱 Akıllı Tarım</div>
-<div class="feature">🌍 Afet Teknolojileri</div>
-<div class="feature">🤖 Robotik ve Mekatronik</div>
-<div class="feature">🔋 Enerji Teknolojileri</div>
-<div class="feature">🚗 Yeni Nesil Mobilite</div>
-
-</div>
-
+        <a class="button" href="#tarim">Proje Detayı</a>
+    </div>
 </section>
 
+<!-- ZEMRA -->
+<section class="project" id="afet">
+    <div class="project-image">
+        ZEMRA GÖRSELİ
+    </div>
 
-<section id="iletisim" class="contact">
+    <div class="project-content">
+        <div class="number">03 · DISASTER TECHNOLOGY</div>
+        <h2>ZEMRA</h2>
 
-<div class="tag">INVESTMENT & PARTNERSHIPS</div>
+        <p>
+            Deprem risklerinin izlenmesi, erken uyarı,
+            afet yönetimi ve kritik durumlarda hızlı
+            müdahaleyi desteklemeye yönelik teknoloji projesi.
+        </p>
 
-<h2>Yatırım ve İş Birliği</h2>
-
-<p>
-ANKA PROJECTS; teknoloji geliştirme, prototip,
-mühendislik, yatırım, üretim ve uluslararası
-iş birliklerine açıktır.
-</p>
-
-<div class="card">
-
-<h3>ANKA PROJECTS</h3>
-
-<p>
-Kurucu: Murat Coşkun<br>
-Malatya · Türkiye
-</p>
-
-<button class="copy"
-onclick="copyText('ANKA PROJECTS - Murat Coşkun - Malatya, Türkiye')">
-BİLGİYİ KOPYALA
-</button>
-
-</div>
-
+        <a class="button" href="#afet">Proje Detayı</a>
+    </div>
 </section>
 
+<!-- VOLKAN -->
+<section class="project">
+    <div class="project-image">
+        ANKA VOLKAN GÖRSELİ
+    </div>
+
+    <div class="project-content">
+        <div class="number">04 · VOLCANIC RISK</div>
+        <h2>ANKA VOLKAN</h2>
+
+        <p>
+            Volkanik faaliyetlerin izlenmesi ve risk
+            yönetimini desteklemeye yönelik afet teknolojisi.
+        </p>
+    </div>
+</section>
+
+<!-- SEL -->
+<section class="project">
+    <div class="project-image">
+        ANKA SEL GÖRSELİ
+    </div>
+
+    <div class="project-content">
+        <div class="number">05 · FLOOD TECHNOLOGY</div>
+        <h2>ANKA SEL</h2>
+
+        <p>
+            Sel ve taşkın risklerinin izlenmesi,
+            erken uyarı ve afet müdahalesini destekleyen
+            teknoloji yaklaşımı.
+        </p>
+    </div>
+</section>
+
+<!-- CIG -->
+<section class="project">
+    <div class="project-image">
+        ANKA ÇIĞ GÖRSELİ
+    </div>
+
+    <div class="project-content">
+        <div class="number">06 · AVALANCHE TECHNOLOGY</div>
+        <h2>ANKA ÇIĞ</h2>
+
+        <p>
+            Çığ risklerinin izlenmesi, erken uyarı ve
+            güvenli müdahale süreçlerini desteklemeye
+            yönelik afet teknolojisi.
+        </p>
+    </div>
+</section>
+
+<!-- REWALK -->
+<section class="project" id="rewalk">
+    <div class="project-image">
+        ANKA REWALK GÖRSELİ
+    </div>
+
+    <div class="project-content">
+        <div class="number">07 · HEALTH TECHNOLOGY</div>
+        <h2>ANKA REWALK</h2>
+
+        <p>
+            Yürüme ve hareket desteğine yönelik,
+            insan hareketlerini desteklemeyi amaçlayan
+            giyilebilir teknoloji ve dış iskelet sistemi.
+        </p>
+
+        <a class="button" href="#rewalk">Proje Detayı</a>
+    </div>
+</section>
+
+<!-- D POWER -->
+<section class="project" id="dpower">
+    <div class="project-image">
+        ANKA D-POWER GÖRSELİ
+    </div>
+
+    <div class="project-content">
+        <div class="number">08 · ENGINE TECHNOLOGY</div>
+        <h2>ANKA D-POWER</h2>
+
+        <p>
+            Mevcut dizel motorlarda yakıt tüketimini azaltma,
+            verimlilik ve performansı geliştirme ve emisyonları
+            düşürmeye yönelik motor optimizasyon sistemi.
+        </p>
+
+        <a class="button" href="#dpower">Proje Detayı</a>
+    </div>
+</section>
+
+</main>
 
 <footer>
-
-© 2026 ANKA PROJECTS · Türkiye
-
+    <strong>ANKA PROJECTS</strong>
+    <br>
+    Innovation · Technology · Future
+    <br><br>
+    © 2026 ANKA PROJECTS
 </footer>
 
-
-<script>
-
-function copyText(text){
-
-navigator.clipboard.writeText(text)
-
-.then(function(){
-
-alert("Metin kopyalandı.");
-
-})
-
-.catch(function(){
-
-alert("Kopyalama başarısız oldu.");
-
-});
-
-}
-
-</script>
-
 </body>
-  </html>
+</html>
