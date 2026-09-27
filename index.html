@@ -1,5 +1,478 @@
 <!DOCTYPE html>
+<html <!DOCTYPE html>
 <html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ANKA PROJELERİ | Yenilikçi Teknolojiler</title>
+
+<meta name="description" content="ANKA Projeleri - ANKA HYDRA, ANKA D-POWER, ANKA REWALK, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL ve ANKA ÇIĞ.">
+<meta name="keywords" content="ANKA HYDRA, ANKA D-POWER, ANKA REWALK, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, teknoloji, inovasyon">
+<meta name="author" content="Murat Coşkun">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050912;
+    color:#eef6ff;
+    line-height:1.6;
+}
+
+header{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+    background:
+    radial-gradient(circle at center,#073b78 0%,#06172e 35%,#050912 75%);
+}
+
+.hero{
+    max-width:1100px;
+}
+
+.hero h1{
+    font-size:clamp(45px,9vw,100px);
+    letter-spacing:8px;
+    color:#fff;
+    text-shadow:0 0 20px #008cff,0 0 50px #0066ff;
+}
+
+.hero h2{
+    font-size:clamp(22px,4vw,42px);
+    color:#16a9ff;
+    margin:10px 0 25px;
+}
+
+.hero p{
+    font-size:clamp(17px,2vw,23px);
+    color:#c9eaff;
+    max-width:850px;
+    margin:auto;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:14px 30px;
+    border:1px solid #18aaff;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    background:#062b50;
+    box-shadow:0 0 20px #007cff;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(3,10,20,.95);
+    border-bottom:1px solid #087cff;
+    padding:12px;
+    text-align:center;
+}
+
+nav a{
+    color:#bde8ff;
+    text-decoration:none;
+    margin:0 8px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:40px;
+    color:#16a9ff;
+    text-shadow:0 0 20px #007cff;
+}
+
+.section-title p{
+    color:#9cc8e8;
+}
+
+.project{
+    margin-bottom:70px;
+    padding:25px;
+    border:1px solid #075e9e;
+    border-radius:20px;
+    background:linear-gradient(145deg,#07182d,#030914);
+    box-shadow:0 0 30px rgba(0,130,255,.18);
+}
+
+.project h3{
+    font-size:32px;
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.project .tag{
+    color:#16b5ff;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.project-image{
+    width:100%;
+    min-height:250px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+    border-radius:15px;
+    overflow:hidden;
+    background:#081321;
+    border:1px solid #087cff;
+}
+
+.project-image img{
+    width:100%;
+    max-height:650px;
+    object-fit:cover;
+    display:block;
+}
+
+.project-image .no-image{
+    padding:80px 20px;
+    text-align:center;
+    color:#6ea9d2;
+}
+
+.project p{
+    color:#c9dff0;
+    font-size:17px;
+}
+
+.models{
+    margin-top:18px;
+    color:#6ecbff;
+    font-weight:bold;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+    margin-top:25px;
+}
+
+.feature{
+    padding:15px;
+    border:1px solid #075e9e;
+    border-radius:12px;
+    background:#061426;
+    text-align:center;
+    color:#bde8ff;
+}
+
+footer{
+    text-align:center;
+    padding:50px 20px;
+    border-top:1px solid #075e9e;
+    color:#80a9c7;
+}
+
+#loading{
+    text-align:center;
+    color:#16a9ff;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="hero">
+    <h1>ANKA</h1>
+    <h2>PROJELERİ</h2>
+    <p>
+        Yenilikçi teknoloji, sürdürülebilirlik, yapay zekâ,
+        temiz enerji, afet yönetimi, tarım ve insan odaklı
+        çözümler geliştiren ANKA proje ailesi.
+    </p>
+    <a class="btn" href="#projeler">PROJELERİ KEŞFET</a>
+</div>
+</header>
+
+<nav>
+<a href="#hydra">HYDRA</a>
+<a href="#dpower">D-POWER</a>
+<a href="#rewalk">REWALK</a>
+<a href="#asi">ASI-01</a>
+<a href="#zemra">ZEMRA</a>
+<a href="#volkan">VOLKAN</a>
+<a href="#sel">SEL</a>
+<a href="#cig">ÇIĞ</a>
+</nav>
+
+<main id="projeler" class="container">
+
+<div class="section-title">
+    <h2>ANKA PROJE AİLESİ</h2>
+    <p>Geleceğe yönelik teknoloji ve çözüm projeleri</p>
+</div>
+
+<section class="project" id="hydra">
+<div class="project-image">
+<img
+src="https://raw.githubusercontent.com/coskunmurat521-droid/anka-hydra/main/ANKA_HYDRA.png"
+alt="ANKA HYDRA"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA HYDRA görseli</div>'">
+</div>
+
+<h3>ANKA HYDRA</h3>
+<div class="tag">SU + HİDROJEN ENERJİLİ ARAÇ AİLESİ</div>
+
+<p>
+Yeni nesil elektrikli, hidrojen yakıt hücreli ve akıllı araç
+teknolojileri platformu. Şehir araçlarından SUV, performans,
+ticari araç, VAN, otobüs, ambulans, motosiklet ve ağır araçlara
+kadar geniş bir araç ailesi hedeflenmektedir.
+</p>
+
+<div class="models">
+HYDRA-1 · HYDRA-X · HYDRA-R · HYDRA-T · HYDRA-VAN ·
+HYDRA-BUS · HYDRA-TRUCK · HYDRA-AMBULANS · HYDRA-MOTO
+</div>
+
+<div class="features">
+<div class="feature">Hidrojen Enerjisi</div>
+<div class="feature">Elektrik Motoru</div>
+<div class="feature">Yakıt Hücresi</div>
+<div class="feature">Akıllı Sürüş</div>
+<div class="feature">Yüksek Güvenlik</div>
+<div class="feature">Sıfır Emisyon Hedefi</div>
+</div>
+</section>
+
+<section class="project" id="dpower">
+<div class="project-image">
+<img
+src="https://raw.githubusercontent.com/coskunmurat521-droid/anka-hydra/main/ANKA_D-POWER.png"
+alt="ANKA D-POWER"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA D-POWER görseli</div>'">
+</div>
+
+<h3>ANKA D-POWER</h3>
+<div class="tag">DİZEL MOTOR OPTİMİZASYON SİSTEMİ</div>
+
+<p>
+Mevcut dizel motorlarda yakıt tüketiminin azaltılması,
+çekiş ve verimliliğin artırılması, emisyonların düşürülmesi
+ve motor ömrünün desteklenmesi amacıyla geliştirilen
+motor optimizasyon yaklaşımı.
+</p>
+
+<div class="features">
+<div class="feature">VGT Turbo</div>
+<div class="feature">Intercooler</div>
+<div class="feature">48V Elektrikli Kompresör</div>
+<div class="feature">Akıllı ECU</div>
+<div class="feature">Sensör Ağı</div>
+<div class="feature">Yakıt Optimizasyonu</div>
+</div>
+</section>
+
+<section class="project" id="rewalk">
+<div class="project-image">
+<img
+src="https://raw.githubusercontent.com/coskunmurat521-droid/anka-hydra/main/ANKA_REWALK.png"
+alt="ANKA REWALK"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA REWALK görseli</div>'">
+</div>
+
+<h3>ANKA REWALK</h3>
+<div class="tag">NÖROMÜSKÜLER DESTEK VE YÜRÜME SİSTEMİ</div>
+
+<p>
+Hareket desteğine ihtiyaç duyan bireyler için yürüme,
+denge ve rehabilitasyon süreçlerini desteklemeyi amaçlayan
+giyilebilir teknoloji ve destek sistemi konsepti.
+</p>
+
+<div class="features">
+<div class="feature">Yürüme Desteği</div>
+<div class="feature">Denge Desteği</div>
+<div class="feature">Hassas Sensörler</div>
+<div class="feature">Yapay Zekâ Desteği</div>
+<div class="feature">Kişiye Özel Ayarlar</div>
+<div class="feature">Rehabilitasyon</div>
+</div>
+</section>
+
+<section class="project" id="asi">
+<div class="project-image">
+<img
+src="https://raw.githubusercontent.com/coskunmurat521-droid/anka-hydra/main/ANKA_ASI-01_PRO.png"
+alt="ANKA ASI-01 PRO"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA ASI-01 PRO görseli</div>'">
+</div>
+
+<h3>ANKA ASI-01 PRO</h3>
+<div class="tag">AKILLI TARIM VE SULAMA SİSTEMİ</div>
+
+<p>
+Akıllı sulama, hassas gübreleme, uzaktan takip,
+veri analizi ve drone entegrasyonu ile daha verimli
+ve sürdürülebilir tarım hedefleyen teknoloji projesi.
+</p>
+
+<div class="features">
+<div class="feature">Akıllı Sulama</div>
+<div class="feature">Akıllı Gübreleme</div>
+<div class="feature">GPS</div>
+<div class="feature">Drone Entegrasyonu</div>
+<div class="feature">Veri Analizi</div>
+<div class="feature">Uzaktan Kontrol</div>
+</div>
+</section>
+
+<section class="project" id="zemra">
+<div class="project-image">
+<img
+src="https://raw.githubusercontent.com/coskunmurat521-droid/anka-hydra/main/ZEMRA.png"
+alt="ZEMRA"
+onerror="this.parentElement.innerHTML='<div class=no-image>ZEMRA görseli</div>'">
+</div>
+
+<h3>ZEMRA</h3>
+<div class="tag">DEPREM ERKEN UYARI VE AFET YÖNETİM SİSTEMİ</div>
+
+<p>
+Deprem ve diğer doğal afetlerde erken uyarı, risk analizi,
+haritalama, sensör ağı, yapay zekâ ve koordineli afet
+yönetimi için geliştirilen sistem konsepti.
+</p>
+
+<div class="features">
+<div class="feature">Sismik Veri</div>
+<div class="feature">Uydu Entegrasyonu</div>
+<div class="feature">Yapay Zekâ</div>
+<div class="feature">Drone Taraması</div>
+<div class="feature">Mobil Uyarı</div>
+<div class="feature">Afet Yönetimi</div>
+</div>
+</section>
+
+<section class="project" id="volkan">
+<div class="project-image">
+<img
+src="ANKA_VOLKAN.png"
+alt="ANKA VOLKAN"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA VOLKAN görseli yüklenemedi</div>'">
+</div>
+
+<h3>ANKA VOLKAN</h3>
+<div class="tag">YANARDAĞ İZLEME SİSTEMİ</div>
+
+<p>
+Volkanik hareketlerin, sıcaklık ve gaz değişimlerinin
+izlenmesine ve erken uyarı altyapısına yönelik proje.
+</p>
+
+<div class="features">
+<div class="feature">Sismik Takip</div>
+<div class="feature">Isı Analizi</div>
+<div class="feature">Gaz Analizi</div>
+<div class="feature">Lav Takibi</div>
+<div class="feature">Uydu</div>
+<div class="feature">Erken Uyarı</div>
+</div>
+</section>
+
+<section class="project" id="sel">
+<div class="project-image">
+<img
+src="ANKA_SEL.png"
+alt="ANKA SEL"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA SEL görseli yüklenemedi</div>'">
+</div>
+
+<h3>ANKA SEL</h3>
+<div class="tag">SEL İZLEME VE ERKEN UYARI SİSTEMİ</div>
+
+<p>
+Su seviyesi, yağış, taşkın riski ve kritik bölgelerin
+takibine yönelik erken uyarı ve afet yönetim sistemi.
+</p>
+
+<div class="features">
+<div class="feature">Su Seviyesi Takibi</div>
+<div class="feature">Yağış Uyarısı</div>
+<div class="feature">Taşkın Analizi</div>
+<div class="feature">Tahliye Planlaması</div>
+<div class="feature">Sensör Ağı</div>
+<div class="feature">Mobil Bildirim</div>
+</div>
+</section>
+
+<section class="project" id="cig">
+<div class="project-image">
+<img
+src="ANKA_CIG-1.png"
+alt="ANKA ÇIĞ"
+onerror="this.parentElement.innerHTML='<div class=no-image>ANKA ÇIĞ görseli yüklenemedi</div>'">
+</div>
+
+<h3>ANKA ÇIĞ</h3>
+<div class="tag">ÇIĞ RİSKİ İZLEME VE ERKEN UYARI</div>
+
+<p>
+Kar kalınlığı, eğim, zemin ve titreşim verilerini
+kullanarak çığ risklerinin izlenmesi ve erken uyarı
+sağlanmasına yönelik sistem konsepti.
+</p>
+
+<div class="features">
+<div class="feature">Kar Kalınlığı</div>
+<div class="feature">Eğim Analizi</div>
+<div class="feature">Titreşim Sensörü</div>
+<div class="feature">Çığ Risk Analizi</div>
+<div class="feature">Drone</div>
+<div class="feature">Erken Uyarı</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<strong>ANKA PROJELERİ</strong>
+<br>
+Murat Coşkun
+<br><br>
+Yenilikçi teknoloji · Sürdürülebilir gelecek · Daha güçlü Türkiye
+</footer>
+
+</body>
+</html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
