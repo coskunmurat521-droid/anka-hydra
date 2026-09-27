@@ -4,356 +4,741 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ANKA PROJELERİ | Yenilikçi Teknolojiler</title>
+<title>ANKA PROJECTS | Yenilikçi Teknoloji Projeleri</title>
 
-<meta name="description" content="ANKA PROJELERİ - ANKA HYDRA, ANKA D-POWER, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL ve ANKA ÇIĞ yenilikçi teknoloji projeleri.">
-<meta name="keywords" content="ANKA PROJELERİ, ANKA HYDRA, ANKA D-POWER, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ">
-<meta name="author" content="Murat Coşkun">
+<meta name="description" content="ANKA PROJECTS - HYDRA, D-POWER, ASI-01 PRO, ZEMRA, VOLKAN, SEL, ÇIĞ ve REWALK projeleri.">
+<meta name="keywords" content="ANKA PROJECTS, ANKA HYDRA, ANKA D-POWER, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, ANKA REWALK">
+<meta name="author" content="ANKA PROJECTS">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
 body{
+margin:0;
+background:#040a12;
+color:#eef7ff;
 font-family:Arial,Helvetica,sans-serif;
-background:#050b14;
-color:#fff;
-line-height:1.6;
+line-height:1.6
 }
-
-a{text-decoration:none;color:inherit}
-
-header{
-min-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:40px 20px;
-background:
-linear-gradient(rgba(5,11,20,.78),rgba(5,11,20,.95)),
-radial-gradient(circle at center,#12345b 0,#050b14 65%);
-}
-
-.hero{
-max-width:1000px;
-}
-
-.logo{
+nav{
+position:sticky;
+top:0;
+z-index:100;
+padding:16px 6%;
+background:rgba(4,10,18,.95);
+border-bottom:1px solid #183750;
+backdrop-filter:blur(12px);
 font-size:20px;
-letter-spacing:5px;
-color:#65caff;
-margin-bottom:20px;
 font-weight:bold;
+letter-spacing:3px
 }
-
+nav span{color:#35b9ff}
+.hero{
+text-align:center;
+padding:90px 6% 75px;
+background:
+radial-gradient(circle at 50% 15%,#123b60 0,#071522 38%,#040a12 75%)
+}
+.logo{
+color:#35b9ff;
+font-weight:bold;
+letter-spacing:6px
+}
 h1{
 font-size:clamp(42px,8vw,82px);
 line-height:1;
-margin-bottom:25px;
+margin:18px 0
 }
-
+h1 span,h2 span{color:#35b9ff}
 .hero p{
-font-size:20px;
-color:#cbd8e8;
-max-width:800px;
-margin:auto;
+max-width:850px;
+margin:25px auto;
+font-size:19px;
+color:#aebfd0
 }
-
-.btn{
+.button{
 display:inline-block;
-margin-top:30px;
-padding:14px 28px;
-border:1px solid #65caff;
+margin-top:20px;
+padding:13px 25px;
+border:1px solid #35b9ff;
 border-radius:30px;
-color:#65caff;
-font-weight:bold;
+color:#35b9ff
 }
-
 section{
 max-width:1200px;
 margin:auto;
-padding:70px 20px;
+padding:70px 6%
 }
-
-.section-title{
+.label{
+color:#35b9ff;
+letter-spacing:3px;
+font-weight:bold;
+text-transform:uppercase
+}
+h2{
 font-size:38px;
-margin-bottom:15px;
-color:#65caff;
+margin:8px 0 30px
 }
-
-.section-text{
-color:#b9c7d8;
-margin-bottom:35px;
-}
-
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+gap:22px
 }
-
 .card{
-background:#0b1524;
-border:1px solid #1c3550;
+background:linear-gradient(145deg,#0b1726,#07101b);
+border:1px solid #193950;
 border-radius:18px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
+box-shadow:0 12px 35px #0007
 }
-
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-display:block;
-}
-
 .visual{
-height:220px;
+height:210px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:
-radial-gradient(circle,#123c63 0,#071321 65%);
-color:#65caff;
-font-size:42px;
-font-weight:bold;
-letter-spacing:3px;
+radial-gradient(circle at center,#153c5b,#07111c 68%);
+border-bottom:1px solid #193950
 }
-
-.card-content{
-padding:25px;
+.visual svg{
+width:94%;
+height:94%
 }
-
+.content{padding:23px}
 .card h3{
-font-size:25px;
-margin-bottom:10px;
+font-size:24px;
+margin:5px 0 9px
 }
-
-.card p{
-color:#b9c7d8;
-font-size:15px;
+.card p{color:#aebfd0}
+.code{
+color:#35b9ff;
+font-size:12px;
+letter-spacing:2px;
+font-weight:bold
 }
-
 .tag{
 display:inline-block;
-margin-top:18px;
-padding:6px 12px;
-border:1px solid #65caff;
+margin-top:14px;
+padding:5px 10px;
+border:1px solid #35b9ff;
 border-radius:20px;
-font-size:12px;
-color:#65caff;
+font-size:11px;
+color:#35b9ff
 }
-
+.feature{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+gap:15px
+}
+.feature div{
+padding:18px;
+background:#081420;
+border-left:3px solid #35b9ff;
+border-radius:8px
+}
+.contact{
+text-align:center;
+background:#081420;
+border-top:1px solid #193950;
+border-bottom:1px solid #193950
+}
 footer{
 text-align:center;
-padding:45px 20px;
-border-top:1px solid #1c3550;
-color:#8fa2b8;
+padding:35px;
+color:#71879b;
+border-top:1px solid #193950
 }
-
-footer strong{
-color:#65caff;
+footer strong{color:#35b9ff}
+@media(max-width:600px){
+section{padding:50px 5%}
+.hero{padding:65px 5%}
+h2{font-size:30px}
+.visual{height:180px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="hero">
-<div class="logo">ANKA PROJECTS</div>
+<nav>ANKA <span>PROJECTS</span></nav>
 
-<h1>GELECEĞİ<br>BUGÜNDEN TASARLIYORUZ</h1>
+<header class="hero">
+<div class="logo">ANKA INNOVATION PLATFORM</div>
+
+<h1>GELECEĞİ <span>TASARLIYORUZ.</span></h1>
 
 <p>
-Yenilikçi ulaşım, enerji, tarım ve afet teknolojileri
-üzerine geliştirilen ANKA proje ailesi.
+Ulaşım, motor teknolojileri, akıllı tarım, afet yönetimi,
+insan odaklı teknoloji ve yeni nesil mühendislik projeleri.
 </p>
 
-<a class="btn" href="#projeler">PROJELERİ İNCELE</a>
-</div>
+<a class="button" href="#projeler">PROJELERİ İNCELE</a>
 </header>
+
 
 <section id="projeler">
 
-<h2 class="section-title">ANKA PROJELERİ</h2>
+<div class="label">ANKA PROJECTS</div>
+<h2>TÜM <span>PROJELER</span></h2>
 
-<p class="section-text">
-Farklı sektörlere yönelik yenilikçi teknoloji ve mühendislik projeleri.
-</p>
 
 <div class="grid">
 
+
+<!-- HYDRA -->
+
 <article class="card">
-<div class="visual">HYDRA</div>
-<div class="card-content">
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<defs>
+<linearGradient id="hydra" x1="0" x2="1">
+<stop stop-color="#35b9ff"/>
+<stop offset="1" stop-color="#8b5cff"/>
+</linearGradient>
+</defs>
+
+<path d="M80 180L135 120Q155 90 215 85H475Q525 88 575 125L625 180Z"
+fill="#0b2031"
+stroke="url(#hydra)"
+stroke-width="5"/>
+
+<path d="M205 90L250 125H430L490 100"
+fill="#102c40"
+stroke="#35b9ff"
+stroke-width="4"/>
+
+<circle cx="185" cy="180" r="36"
+fill="#040a12" stroke="#35b9ff" stroke-width="5"/>
+
+<circle cx="515" cy="180" r="36"
+fill="#040a12" stroke="#35b9ff" stroke-width="5"/>
+
+<path d="M245 150H455"
+stroke="#35b9ff" stroke-width="4"/>
+
+<text x="350" y="55"
+text-anchor="middle"
+fill="#fff"
+font-size="28"
+font-family="Arial"
+font-weight="bold">
+ANKA HYDRA
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">01 · MOBILITY</div>
 <h3>ANKA HYDRA</h3>
+
 <p>
-Elektrikli, hidrojen yakıt hücreli, ADAS destekli ve modüler
-yeni nesil araç teknolojisi platformu.
+Yeni nesil modüler araç teknolojisi platformu.
+Elektrikli, hidrojen yakıt hücreli ve gelişmiş sürücü
+destek sistemlerine yönelik araç ailesi.
 </p>
+
 <span class="tag">ULAŞIM TEKNOLOJİSİ</span>
 </div>
 </article>
 
+
+<!-- D POWER -->
+
 <article class="card">
-<div class="visual">D-POWER</div>
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<circle cx="350" cy="130" r="78"
+fill="#0b2031"
+stroke="#35b9ff"
+stroke-width="7"/>
+
+<circle cx="350" cy="130" r="32"
+fill="#35b9ff"/>
+
+<path d="M350 35V65M350 195V225M255 130H225M445 130H475"
+stroke="#35b9ff"
+stroke-width="8"/>
+
+<path d="M295 85L405 175M405 85L295 175"
+stroke="#8b5cff"
+stroke-width="5"/>
+
+<text x="350" y="245"
+text-anchor="middle"
+fill="#fff"
+font-size="25"
+font-weight="bold">
+ANKA D-POWER
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">02 · ENGINE</div>
 <h3>ANKA D-POWER</h3>
+
 <p>
-Mevcut dizel motorlarda yakıt tüketimini azaltma,
-verimliliği artırma ve emisyonları düşürmeye yönelik
-motor optimizasyon teknolojisi.
+Mevcut dizel motorlarda yakıt tüketimini azaltmayı,
+verimliliği artırmayı ve emisyonları düşürmeyi hedefleyen
+motor optimizasyon sistemi.
 </p>
+
 <span class="tag">MOTOR TEKNOLOJİSİ</span>
 </div>
 </article>
 
+
+<!-- ASI -->
+
 <article class="card">
-<div class="visual">ASI-01</div>
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<rect x="60" y="160" width="580" height="35"
+rx="12"
+fill="#143c27"
+stroke="#35b9ff"
+stroke-width="3"/>
+
+<path d="M100 160Q125 75 150 160
+M210 160Q235 60 260 160
+M320 160Q345 80 370 160
+M430 160Q455 55 480 160
+M540 160Q565 75 590 160"
+fill="none"
+stroke="#55d477"
+stroke-width="11"/>
+
+<path d="M350 45V130
+M315 75Q350 95 385 75
+M315 105Q350 125 385 105"
+fill="none"
+stroke="#35b9ff"
+stroke-width="6"/>
+
+<text x="350" y="35"
+text-anchor="middle"
+fill="#fff"
+font-size="24"
+font-weight="bold">
+ANKA ASI-01 PRO
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">03 · AGRICULTURE</div>
 <h3>ANKA ASI-01 PRO</h3>
+
 <p>
-Akıllı tarım, hedefli gübreleme ve sulama,
-su tasarrufu ve verimli tarımsal üretim teknolojisi.
+Akıllı gübreleme, hedefli sulama, su tasarrufu ve
+verimli tarımsal üretim için geliştirilen teknoloji.
 </p>
+
 <span class="tag">AKILLI TARIM</span>
 </div>
 </article>
 
+
+<!-- ZEMRA -->
+
 <article class="card">
-<div class="visual">ZEMRA</div>
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<path d="M0 205L125 145L225 190L330 115L450 180L700 110V260H0Z"
+fill="#102b3d"/>
+
+<circle cx="350" cy="135" r="58"
+fill="none"
+stroke="#35b9ff"
+stroke-width="5"/>
+
+<path d="M350 65V205M280 135H420"
+stroke="#35b9ff"
+stroke-width="5"/>
+
+<path d="M300 90L400 180M400 90L300 180"
+stroke="#8b5cff"
+stroke-width="3"/>
+
+<text x="350" y="40"
+text-anchor="middle"
+fill="#fff"
+font-size="30"
+font-weight="bold">
+ZEMRA
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">04 · DISASTER</div>
 <h3>ZEMRA</h3>
+
 <p>
 Deprem risklerinin izlenmesi, erken uyarı,
-afet yönetimi ve saha destek teknolojilerine yönelik proje.
+afet yönetimi ve saha destek teknolojilerine
+yönelik proje.
 </p>
+
 <span class="tag">DEPREM & AFET</span>
 </div>
 </article>
 
+
+<!-- VOLKAN -->
+
 <article class="card">
-<img src="ANKA_VOLKAN.png" alt="ANKA VOLKAN">
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<path d="M130 220L250 75L300 145L350 55L400 145L455 75L570 220Z"
+fill="#182d3b"
+stroke="#35b9ff"
+stroke-width="5"/>
+
+<path d="M350 55V25M330 38L350 20L370 38"
+stroke="#ff6b35"
+stroke-width="7"/>
+
+<circle cx="350" cy="125" r="35"
+fill="none"
+stroke="#35b9ff"
+stroke-width="4"/>
+
+<text x="350" y="245"
+text-anchor="middle"
+fill="#fff"
+font-size="26"
+font-weight="bold">
+ANKA VOLKAN
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">05 · VOLCANO</div>
 <h3>ANKA VOLKAN</h3>
+
 <p>
-Volkanik faaliyetlerin izlenmesi, risk analizi,
-erken uyarı ve afet yönetimine yönelik teknoloji projesi.
+Volkanik faaliyetlerin izlenmesi, risk analizi
+ve erken uyarı teknolojilerine yönelik proje.
 </p>
+
 <span class="tag">VOLKAN RİSKİ</span>
 </div>
 </article>
 
+
+<!-- SEL -->
+
 <article class="card">
-<img src="ANKA_SEL.png" alt="ANKA SEL">
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<path d="M0 155Q100 105 200 155T400 155T600 155T800 155V260H0Z"
+fill="#103b57"/>
+
+<path d="M0 185Q100 135 200 185T400 185T600 185T800 185"
+fill="none"
+stroke="#35b9ff"
+stroke-width="8"/>
+
+<path d="M350 40V135M315 80L350 45L385 80"
+stroke="#35b9ff"
+stroke-width="7"/>
+
+<text x="350" y="35"
+text-anchor="middle"
+fill="#fff"
+font-size="28"
+font-weight="bold">
+ANKA SEL
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">06 · FLOOD</div>
 <h3>ANKA SEL</h3>
+
 <p>
 Sel ve taşkın risklerinin izlenmesi, su seviyelerinin
-takibi ve erken uyarı sistemlerine yönelik proje.
+takibi ve erken uyarı sistemleri.
 </p>
-<span class="tag">SEL RİSKİ</span>
+
+<span class="tag">SEL & TAŞKIN</span>
 </div>
 </article>
 
+
+<!-- CIG -->
+
 <article class="card">
-<img src="ANKA_CIG-1.png" alt="ANKA ÇIĞ">
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<path d="M80 220L250 70L340 145L440 60L620 220Z"
+fill="#dce8f2"
+stroke="#35b9ff"
+stroke-width="5"/>
+
+<path d="M160 220L280 120L360 180L470 100L560 220"
+fill="none"
+stroke="#7895a8"
+stroke-width="5"/>
+
+<circle cx="350" cy="90" r="32"
+fill="none"
+stroke="#35b9ff"
+stroke-width="5"/>
+
+<text x="350" y="45"
+text-anchor="middle"
+fill="#fff"
+font-size="28"
+font-weight="bold">
+ANKA ÇIĞ
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">07 · AVALANCHE</div>
 <h3>ANKA ÇIĞ</h3>
+
 <p>
-Çığ risklerinin izlenmesi, tehlike bölgelerinin
-takibi ve erken uyarı teknolojisi.
+Çığ risklerinin izlenmesi, tehlikeli bölgelerin
+takibi ve erken uyarı teknolojileri.
 </p>
+
 <span class="tag">ÇIĞ RİSKİ</span>
 </div>
 </article>
 
+
+<!-- REWALK -->
+
 <article class="card">
-<div class="visual">REWALK</div>
-<div class="card-content">
+
+<div class="visual">
+
+<svg viewBox="0 0 700 260">
+
+<circle cx="350" cy="45" r="25"
+fill="none"
+stroke="#35b9ff"
+stroke-width="6"/>
+
+<path d="M350 72V135
+M350 95L295 120
+M350 95L405 120
+M350 135L295 205
+M350 135L405 205
+M295 205L275 230
+M405 205L425 230"
+fill="none"
+stroke="#35b9ff"
+stroke-width="8"
+stroke-linecap="round"/>
+
+<path d="M300 115L270 155
+M400 115L430 155"
+stroke="#8b5cff"
+stroke-width="7"/>
+
+<text x="350" y="25"
+text-anchor="middle"
+fill="#fff"
+font-size="24"
+font-weight="bold">
+ANKA REWALK
+</text>
+
+</svg>
+
+</div>
+
+<div class="content">
+<div class="code">08 · HUMAN TECHNOLOGY</div>
 <h3>ANKA REWALK</h3>
+
 <p>
 Yürüme desteği ve hareket kabiliyetini desteklemeye
 yönelik giyilebilir teknoloji ve dış iskelet sistemi.
 </p>
-<span class="tag">GİYİLEBİLİR TEKNOLOJİ</span>
+
+<span class="tag">İNSAN & TEKNOLOJİ</span>
 </div>
 </article>
 
 </div>
 </section>
+
+
+<!-- HYDRA AİLESİ -->
 
 <section>
 
-<h2 class="section-title">ANKA HYDRA AİLESİ</h2>
+<div class="label">ANKA HYDRA FAMILY</div>
 
-<p class="section-text">
-Şehir araçlarından SUV, performans, ticari araç, VAN,
-otobüs, motosiklet ve yarış araçlarına kadar modüler araç ailesi.
-</p>
+<h2>MODÜLER <span>ARAÇ AİLESİ</span></h2>
 
 <div class="grid">
 
-<article class="card">
-<div class="visual">HYDRA-1</div>
-<div class="card-content">
-<h3>HYDRA-1</h3>
-<p>Şehir içi kullanım için kompakt yeni nesil araç.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-1</div>
+<h3>Şehir Aracı</h3>
+<p>Kompakt şehir içi ulaşım platformu.</p>
+<span class="tag">CITY</span>
 </div>
-</article>
+</div>
 
-<article class="card">
-<div class="visual">HYDRA-X</div>
-<div class="card-content">
-<h3>HYDRA-X</h3>
-<p>SUV ve arazi kullanımına yönelik araç platformu.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-X</div>
+<h3>SUV / OFF-ROAD</h3>
+<p>Arazi ve zorlu koşullar için araç platformu.</p>
+<span class="tag">SUV</span>
 </div>
-</article>
+</div>
 
-<article class="card">
-<div class="visual">HYDRA-R</div>
-<div class="card-content">
-<h3>HYDRA-R</h3>
-<p>Yüksek performans odaklı araç platformu.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-R</div>
+<h3>PERFORMANCE</h3>
+<p>Performans odaklı yeni nesil araç.</p>
+<span class="tag">PERFORMANCE</span>
 </div>
-</article>
+</div>
 
-<article class="card">
-<div class="visual">HYDRA-T</div>
-<div class="card-content">
-<h3>HYDRA-T</h3>
-<p>Ticari kullanım için modüler araç platformu.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-T</div>
+<h3>COMMERCIAL</h3>
+<p>Ticari kullanım için modüler platform.</p>
+<span class="tag">COMMERCIAL</span>
 </div>
-</article>
+</div>
 
-<article class="card">
-<div class="visual">HYDRA-VAN</div>
-<div class="card-content">
-<h3>HYDRA-VAN</h3>
-<p>Personel ve yük taşımacılığı için VAN platformu.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-VAN</div>
+<h3>VAN</h3>
+<p>Personel ve yük taşımacılığı için platform.</p>
+<span class="tag">VAN</span>
 </div>
-</article>
+</div>
 
-<article class="card">
-<div class="visual">HYDRA-BUS</div>
-<div class="card-content">
-<h3>HYDRA-BUS</h3>
-<p>Toplu ulaşım için yeni nesil otobüs platformu.</p>
+<div class="card">
+<div class="content">
+<div class="code">HYDRA-BUS</div>
+<h3>BUS</h3>
+<p>Toplu ulaşım için yeni nesil platform.</p>
+<span class="tag">BUS</span>
 </div>
-</article>
+</div>
 
 </div>
 </section>
 
+
+<!-- ÖZELLİKLER -->
+
+<section>
+
+<div class="label">TECHNOLOGY</div>
+
+<h2>ANKA <span>VİZYONU</span></h2>
+
+<div class="feature">
+
+<div>
+<strong>Akıllı Sistemler</strong>
+<br>
+Sensörler, kontrol sistemleri ve veri tabanlı teknolojiler.
+</div>
+
+<div>
+<strong>Sürdürülebilirlik</strong>
+<br>
+Enerji ve kaynak verimliliğine odaklanan çözümler.
+</div>
+
+<div>
+<strong>Güvenlik</strong>
+<br>
+İnsan hayatını ve saha güvenliğini önceleyen sistemler.
+</div>
+
+<div>
+<strong>Modüler Tasarım</strong>
+<br>
+Farklı kullanım alanlarına uyarlanabilir teknoloji mimarisi.
+</div>
+
+</div>
+</section>
+
+
+<section class="contact">
+
+<div class="label">ANKA PROJECTS</div>
+
+<h2>GELECEĞİ <span>BİRLİKTE TASARLAYALIM</span></h2>
+
+<p>
+Ulaşım • Motor Teknolojileri • Tarım • Afet Yönetimi •
+İnsan Odaklı Teknoloji
+</p>
+
+</section>
+
+
 <footer>
-<strong>ANKA PROJECTS</strong><br>
-Yenilikçi teknoloji • Mühendislik • Gelecek
+
+<strong>ANKA PROJECTS</strong>
+
 <br><br>
+
+Yenilikçi Teknoloji • Mühendislik • Gelecek
+
+<br><br>
+
 © 2026 ANKA PROJECTS
+
 </footer>
 
 </body>
-</html>
+  </html>
