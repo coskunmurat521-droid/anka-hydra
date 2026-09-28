@@ -4,17 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ANKA PROJECTS | Yenilikçi Teknoloji ve Mühendislik Projeleri</title>
+<title>ANKA PROJECTS | Yenilikçi Teknoloji ve Mühendislik</title>
 
-<meta name="description" content="ANKA PROJECTS; ulaşım, motor teknolojileri, afet yönetimi, tarım, sağlık ve insan odaklı yenilikçi teknoloji projeleri geliştiren bağımsız proje platformudur.">
-<meta name="keywords" content="ANKA PROJECTS, ANKA HYDRA, ANKA D-POWER, ANKA ASI-01 PRO, ZEMRA, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ, ANKA REWALK, teknoloji, mühendislik">
+<meta name="description" content="ANKA PROJECTS; ulaşım, afet yönetimi, tarım, motor teknolojileri ve insan odaklı yenilikçi projeler geliştiren bağımsız teknoloji platformudur.">
+
+<meta name="keywords" content="ANKA PROJECTS, ANKA HYDRA, ZEMRA, ANKA ASI-01 PRO, ANKA D-POWER, ANKA REWALK, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ">
+
 <meta name="author" content="ANKA PROJECTS">
 
 <meta property="og:title" content="ANKA PROJECTS">
-<meta property="og:description" content="Yenilikçi teknoloji, mühendislik ve insan odaklı projeler.">
+<meta property="og:description" content="Yenilikçi teknoloji ve mühendislik projeleri">
 <meta property="og:type" content="website">
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -27,40 +30,40 @@ html{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#03101f;
+    background:#020914;
     color:#eef7ff;
     line-height:1.6;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
 }
 
 header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(2,12,25,.95);
-    border-bottom:1px solid rgba(80,180,255,.25);
-    backdrop-filter:blur(12px);
+    background:rgba(2,9,20,.94);
+    border-bottom:1px solid rgba(56,189,248,.25);
+    backdrop-filter:blur(14px);
 }
 
 .nav{
     max-width:1200px;
     margin:auto;
-    padding:15px 20px;
+    padding:16px 20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     gap:20px;
 }
 
 .logo{
-    font-size:24px;
+    font-size:23px;
     font-weight:900;
     letter-spacing:2px;
-    color:#fff;
+    white-space:nowrap;
 }
 
 .logo span{
@@ -70,28 +73,30 @@ header{
 nav{
     display:flex;
     flex-wrap:wrap;
-    gap:15px;
+    gap:8px;
 }
 
 nav a{
+    padding:8px 11px;
+    color:#c8e8fa;
     font-size:14px;
-    color:#c9e9ff;
-    padding:8px 10px;
+    border-radius:8px;
 }
 
 nav a:hover{
-    color:#4dc8ff;
+    background:rgba(56,189,248,.12);
+    color:#fff;
 }
 
 .hero{
-    min-height:85vh;
+    min-height:88vh;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:70px 20px;
+    padding:80px 20px;
     background:
-    radial-gradient(circle at center,#073968 0%,#03172b 38%,#020b16 75%);
+    radial-gradient(circle at 50% 35%,#0a4674 0%,#05243f 28%,#020b16 68%,#01050b 100%);
 }
 
 .hero-content{
@@ -104,27 +109,33 @@ nav a:hover{
     color:#7ddcff;
     padding:7px 16px;
     border-radius:30px;
-    margin-bottom:20px;
     font-size:13px;
     letter-spacing:1px;
+    margin-bottom:22px;
 }
 
 .hero h1{
-    font-size:clamp(42px,8vw,82px);
+    font-size:clamp(45px,9vw,90px);
     line-height:1;
-    margin-bottom:20px;
-    letter-spacing:3px;
+    letter-spacing:4px;
+    margin-bottom:22px;
 }
 
 .hero h1 span{
     color:#38bdf8;
 }
 
+.hero h2{
+    font-size:clamp(20px,4vw,34px);
+    margin-bottom:18px;
+    color:#dff5ff;
+}
+
 .hero p{
     max-width:800px;
-    margin:0 auto 30px;
-    font-size:19px;
-    color:#c8e5f8;
+    margin:0 auto 32px;
+    font-size:18px;
+    color:#b9d8e9;
 }
 
 .buttons{
@@ -138,8 +149,8 @@ nav a:hover{
     display:inline-block;
     padding:13px 22px;
     border-radius:10px;
-    border:1px solid #38bdf8;
     background:#0877b9;
+    border:1px solid #38bdf8;
     font-weight:bold;
 }
 
@@ -165,6 +176,8 @@ section{
 
 .section-title p{
     color:#9fc8df;
+    max-width:760px;
+    margin:auto;
 }
 
 .projects{
@@ -174,4 +187,79 @@ section{
 }
 
 .card{
-    background
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(145deg,#071b2d,#04101d);
+    border:1px solid rgba(56,189,248,.22);
+    border-radius:18px;
+    padding:26px;
+    min-height:300px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#38bdf8;
+    box-shadow:0 15px 45px rgba(0,130,220,.15);
+}
+
+.card-icon{
+    width:62px;
+    height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:rgba(56,189,248,.12);
+    border:1px solid rgba(56,189,248,.35);
+    font-size:29px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#a9c9da;
+    font-size:15px;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:20px;
+    padding:5px 10px;
+    border:1px solid rgba(56,189,248,.35);
+    border-radius:20px;
+    color:#7ddcff;
+    font-size:12px;
+}
+
+.core{
+    background:
+    radial-gradient(circle at 50% 0%,rgba(0,145,255,.25),transparent 50%),
+    linear-gradient(145deg,#071e34,#020b15);
+    border:1px solid rgba(56,189,248,.45);
+}
+
+.core h3{
+    color:#65d5ff;
+}
+
+.zemra-box{
+    margin-top:30px;
+    padding:35px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#061b2c,#020914);
+    border:1px solid rgba(56,189,248,.35);
+}
+
+.zemra-box h3{
+    font-size:30px;
+    margin-bottom:15px;
+    color:#63d5ff;
+}
+
+.zemra-box p{
+    color:#
