@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ANKA PROJECTS — ZEMRA merkezli afet teknolojileri, mobilite, enerji, tarım ve mühendislik projeleri.">
+<meta name="keywords" content="ANKA PROJECTS, ZEMRA, ANKA HYDRA, ANKA ASI-01 PRO, ANKA D-POWER, ANKA REWALK">
+<meta name="author" content="ANKA PROJECTS">
+<meta name="theme-color" content="#050914">
+<meta property="og:title" content="ANKA PROJECTS">
+<meta property="og:description" content="Fikirden mühendislik çözümüne — bağımsız teknoloji projeleri.">
+<meta property="og:type" content="website">
+<title>ANKA PROJECTS | Teknoloji ve Mühendislik</title>
+
+<style>
+:root{
+  --bg:#050914;
+  --bg2:#08111f;
+  --panel:rgba(14,25,42,.72);
+  --line:rgba(125,185,255,.16);
+  --text:#f4f8ff;
+  --muted:#9eacc0;
+  --blue:#39a7ff;
+  --blue2:#79c8ff;
+  --cyan:#5ee7ff;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 80% 0%,rgba(38,130,255,.14),transparent 28rem),
+    radial-gradient(circle at 0% 35%,rgba(0,213,255,.06),transparent 25rem),
+    var(--bg);
+  color:var(--text);
+  line-height:1.65;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(92%,var(--max));margin:auto}
+header{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(18px);
+  background:rgba(5,9,20,.78);
+  border-bottom:1px solid var(--line);
+}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.08em}
+.brand-mark{
+  width:40px;height:40px;border:1px solid rgba(121,200,255,.65);
+  border-radius:12px;display:grid;place-items:center;
+  color:var(--blue2);font-size:20px;
+  box-shadow:0 0 28px rgba(57,167,255,.14);
+}
+nav{display:flex;gap:24px}
+nav a{font-size:14px;color:#b8c5d7}
+nav a:hover{color:#fff}
+.menu{display:none;border:1px solid var(--line);background:none;color:#fff;padding:8px 10px;border-radius:10px}
+
+.hero{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:70px 0 90px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:65px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 12px;
+  border:1px solid rgba(57,167,255,.28);border-radius:999px;
+  color:var(--blue2);background:rgba(57,167,255,.06);
+  font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+}
+h1{font-size:clamp(46px,7vw,86px);line-height:.98;letter-spacing:-.055em;margin:22px 0}
+h1 span{color:var(--blue)}
+.hero p{font-size:18px;color:var(--muted);max-width:690px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{padding:13px 19px;border-radius:12px;font-weight:800;border:1px solid var(--line)}
+.btn.primary{background:linear-gradient(135deg,#198fe9,#36b6ff);border:0}
+.btn.secondary{background:rgba(255,255,255,.025)}
+.btn:hover{transform:translateY(-2px)}
+
+.visual{
+  min-height:440px;border:1px solid var(--line);border-radius:32px;
+  background:
+    linear-gradient(145deg,rgba(24,48,78,.65),rgba(5,10,20,.9)),
+    radial-gradient(circle at center,rgba(57,167,255,.18),transparent 55%);
+  position:relative;overflow:hidden;display:grid;place-items:center;
+  box-shadow:0 35px 100px rgba(0,0,0,.35);
+}
+.orbit,.orbit:before,.orbit:after{
+  position:absolute;border:1px solid rgba(80,184,255,.22);border-radius:50%;
+}
+.orbit{width:300px;height:300px}
+.orbit:before{content:"";inset:34px}
+.orbit:after{content:"";inset:78px}
+.core{
+  width:130px;height:130px;border-radius:50%;
+  display:grid;place-items:center;z-index:2;
+  border:1px solid rgba(121,200,255,.7);
+  background:radial-gradient(circle,#173b61,#07111f 68%);
+  color:var(--cyan);font-size:44px;font-weight:900;
+  box-shadow:0 0 55px rgba(57,167,255,.28);
+}
+.label{position:absolute;color:#9fcfff;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.l1{top:25%;left:12%}.l2{top:16%;right:12%}.l3{bottom:20%;left:14%}.l4{bottom:16%;right:12%}
+
+section{padding:100px 0}
+.section-head{max-width:760px;margin-bottom:45px}
+.kicker{color:var(--blue2);font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.04em;margin:10px 0 15px}
+.section-head p{color:var(--muted)}
+
+.zemra-wrap{
+  padding:42px;border-radius:28px;border:1px solid rgba(57,167,255,.25);
+  background:linear-gradient(145deg,rgba(20,49,80,.58),rgba(7,13,25,.8));
+}
+.zemra-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px}
+.zemra-title{font-size:44px;font-weight:900;letter-spacing:-.04em}
+.zemra-title span{color:var(--blue)}
+.zemra-wrap p{color:#b2bfd1}
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.pill{padding:8px 11px;border-radius:999px;border:1px solid var(--line);color:#c5d5e8;font-size:12px}
+.specs{display:grid;gap:12px}
+.spec{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}
+.spec b{display:block;margin-bottom:3px}.spec span{font-size:13px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{
+  padding:27px;border:1px solid var(--line);border-radius:22px;
+  background:linear-gradient(145deg,rgba(15,28,47,.8),rgba(7,12,23,.9));
+  transition:.25s;
+}
+.card:hover{transform:translateY(-5px);border-color:rgba(57,167,255,.4)}
+.card-top{display:flex;justify-content:space-between;gap:15px;align-items:start}
+.code{color:var(--blue2);font-weight:900;letter-spacing:.08em;font-size:13px}
+.tag{font-size:11px;color:#9eacc0;border:1px solid var(--line);border-radius:999px;padding:5px 8px}
+.card h3{font-size:27px;margin:14px 0 7px}
+.card p{color:var(--muted);font-size:14px}
+.card ul{margin:16px 0 0 18px;color:#b8c5d6;font-size:13px}
+.card li{margin:4px 0}
+
+.note{
+  margin-top:35px;padding:18px 20px;border-left:3px solid var(--blue);
+  background:rgba(57,167,255,.05);color:#aebdd0;border-radius:0 12px 12px 0;font-size:13px
+}
+
+.contact{
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(7,14,27,.2),rgba(7,14,27,.9));
+}
+.contact-box{
+  display:flex;justify-content:space-between;gap:30px;align-items:center;
+  padding:42px;border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.025)
+}
+.contact-box p{color:var(--muted);max-width:650px}
+footer{padding:30px 0;color:#718097;font-size:12px;border-top:1px solid var(--line)}
+.footer-row{display:flex;justify-content:space-between;gap:20px}
+
+@media(max-width:850px){
+  nav{display:none}
+  .menu{display:block}
+  .hero-grid,.zemra-grid{grid-template-columns:1fr}
+  .visual{min-height:330px}
+  .grid{grid-template-columns:1fr}
+  .contact-box{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:520px){
+  .nav{height:64px}
+  .hero{padding-top:45px}
+  .zemra-wrap{padding:24px}
+  .zemra-title{font-size:34px}
+  section{padding:70px 0}
+  .footer-row{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top"><span class="brand-mark">A</span> ANKA PROJECTS</a>
+    <nav>
+      <a href="#zemra">ZEMRA</a>
+      <a href="#projeler">Projeler</a>
+      <a href="#yaklasim">Yaklaşım</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <button class="menu" onclick="document.querySelector('nav').style.display=document.querySelector('nav').style.display==='flex'?'none':'flex'">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Bağımsız teknoloji projeleri</div>
+      <h1>Fikirden<br><span>mühendislik çözümüne.</span></h1>
+      <p>
+        ANKA PROJECTS; afet teknolojileri, mobilite, enerji, tarım ve mühendislik
+        alanlarında geliştirilen proje fikirlerini tek bir çatı altında sunar.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#zemra">Ana projeyi keşfet</a>
+        <a class="btn secondary" href="#projeler">Tüm projeler</a>
+      </div>
+    </div>
+    <div class="visual" aria-label="ANKA PROJECTS teknoloji görseli">
+      <div class="orbit"></div>
+      <div class="core">A</div>
+      <span class="label l1">Afet</span>
+      <span class="label l2">Mobilite</span>
+      <span class="label l3">Enerji</span>
+      <span class="label l4">Mühendislik</span>
+    </div>
+  </div>
+</section>
+
+<section id="zemra">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Ana proje</div>
+      <h2>ZEMRA</h2>
+      <p>Afet öncesi, afet anı ve sonrasında kullanılabilecek teknoloji yaklaşımını merkeze alan proje.</p>
+    </div>
+
+    <div class="zemra-wrap">
+      <div class="zemra-grid">
+        <div>
+          <div class="zemra-title">Daha hızlı <span>tespit.</span><br>Daha koordineli müdahale.</div>
+          <p style="margin-top:18px">
+            ZEMRA, afet yönetiminde erken tespit, saha farkındalığı, veri toplama
+            ve müdahale süreçlerini teknolojiyle desteklemeye yönelik bir proje
+            konseptidir.
+          </p>
+          <div class="pills">
+            <span class="pill">Erken tespit</span>
+            <span class="pill">Saha verisi</span>
+            <span class="pill">Acil durum</span>
+            <span class="pill">Koordinasyon</span>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><b>Odak</b><span>Afet ve acil durum teknolojileri</span></div>
+          <div class="spec"><b>Hedef</b><span>Karar destek ve saha farkındalığı</span></div>
+          <div class="spec"><b>Yaklaşım</b><span>Modüler ve geliştirilebilir sistem mimarisi</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projeler">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Proje portföyü</div>
+      <h2>ANKA çatısı altında</h2>
+      <p>Her proje kendi kullanım alanına göre konumlandırılır; ortak amaç uygulanabilir teknoloji geliştirmektir.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-top"><span class="code">HYDRA</span><span class="tag">Mobilite</span></div>
+        <h3>ANKA HYDRA</h3>
+        <p>Yeni nesil araç ailesi için tasarım, enerji ve sürücü destek yaklaşımını bir araya getiren proje ailesi.</p>
+        <ul><li>HYDRA-1 şehir aracı</li><li>HYDRA-X SUV / arazi</li><li>HYDRA-R performans</li><li>HYDRA-T ticari</li></ul>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="code">ASI-01 PRO</span><span class="tag">Tarım</span></div>
+        <h3>Akıllı tarım</h3>
+        <p>Su ve gübre kullanımını daha kontrollü hale getirmeye yönelik akıllı tarım konsepti.</p>
+        <ul><li>Hedefli sulama</li><li>Akıllı gübreleme</li><li>Kaynak verimliliği</li></ul>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="code">D-POWER</span><span class="tag">Motor teknolojisi</span></div>
+        <h3>ANKA D-POWER</h3>
+        <p>Mevcut dizel motorların verimlilik ve performansını geliştirmeye yönelik optimizasyon yaklaşımı.</p>
+        <ul><li>VGT turbo yaklaşımı</li><li>Intercooler</li><li>Elektrikli kompresör</li><li>48V destek sistemi</li></ul>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="code">REWALK</span><span class="tag">Mobilite desteği</span></div>
+        <h3>ANKA REWALK</h3>
+        <p>Hareket desteğine ihtiyaç duyan kişiler için giyilebilir destek sistemi konsepti.</p>
+        <ul><li>Sensör tabanlı destek</li><li>Giyilebilir yapı</li><li>Acil durum bildirimi konsepti</li></ul>
+      </article>
+    </div>
+
+    <div class="note">
+      Not: Proje açıklamaları konsept düzeyindedir. Teknik doğrulama, prototip testleri ve mevzuat/sertifikasyon süreçleri ayrıca yürütülmelidir.
+    </div>
+  </div>
+</section>
+
+<section id="yaklasim">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Çalışma yaklaşımı</div>
+      <h2>Basit. Modüler. Geliştirilebilir.</h2>
+      <p>Web sitesi artık tek bir dosya mantığında çalışacak şekilde tasarlandı. Harici kütüphane veya karmaşık klasör yapısı gerektirmez.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="code">01 / FİKİR</div><h3>Problemi tanımla</h3><p>Gerçek bir ihtiyacı ve hedef kullanıcıyı netleştir.</p></article>
+      <article class="card"><div class="code">02 / TASARIM</div><h3>Sistemi kurgula</h3><p>Modülleri, kullanım senaryolarını ve teknik yaklaşımı oluştur.</p></article>
+      <article class="card"><div class="code">03 / PROTOTİP</div><h3>Çalışan örnek</h3><p>Temel çalışma prensibini gösteren demonstratör ve prototip geliştir.</p></article>
+      <article class="card"><div class="code">04 / DOĞRULAMA</div><h3>Test et ve geliştir</h3><p>Ölç, doğrula, eksikleri gider ve sonraki mühendislik aşamasına geç.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="iletisim">
+  <div class="container">
+    <div class="contact-box">
+      <div>
+        <div class="kicker">ANKA PROJECTS</div>
+        <h2 style="font-size:38px">Geleceği tasarlıyoruz.</h2>
+        <p>Projeler; teknik dosya, prototip, yatırım ve iş birliği süreçlerine uygun şekilde geliştirilebilir.</p>
+      </div>
+      <a class="btn primary" href="mailto:ankaprojects@example.com">İletişime geç</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© 2026 ANKA PROJECTS</span>
+    <span>Teknoloji · Mühendislik · Yenilik</span>
+  </div>
+</footer>
+</body>
+</html>
