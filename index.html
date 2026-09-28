@@ -4,15 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ANKA PROJECTS | Yenilikçi Teknolojiler</title>
+<title>ANKA PROJECTS | Geleceğin Teknolojileri</title>
 
-<meta name="description" content="ANKA PROJECTS - ZEMRA ve ileri teknoloji projeleri. Afet teknolojileri, mobilite, enerji, tarım ve mühendislik çözümleri.">
-<meta name="keywords" content="ANKA PROJECTS, ZEMRA, ANKA HYDRA, ANKA ASI-01 PRO, ANKA D-POWER, ANKA REWALK, teknoloji, mühendislik">
+<meta name="description" content="ANKA PROJECTS; ZEMRA, ANKA HYDRA, ANKA ASI-01 PRO, ANKA D-POWER, ANKA REWALK ve afet teknolojileri projelerini geliştiren bağımsız teknoloji platformudur.">
+<meta name="keywords" content="ANKA PROJECTS, ZEMRA, ANKA HYDRA, ANKA ASI-01 PRO, ANKA D-POWER, ANKA REWALK, ANKA VOLKAN, ANKA SEL, ANKA ÇIĞ">
 <meta name="author" content="ANKA PROJECTS">
-
-<meta property="og:title" content="ANKA PROJECTS">
-<meta property="og:description" content="Geleceğin teknolojilerini geliştiren bağımsız proje platformu.">
-<meta property="og:type" content="website">
 
 <style>
 *{
@@ -26,7 +22,7 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#050914;
     color:#f4f7ff;
     line-height:1.6;
@@ -35,6 +31,11 @@ body{
 a{
     color:inherit;
     text-decoration:none;
+}
+
+img{
+    max-width:100%;
+    display:block;
 }
 
 .container{
@@ -49,9 +50,9 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(5,9,20,.94);
-    border-bottom:1px solid rgba(80,160,255,.18);
-    backdrop-filter:blur(12px);
+    background:rgba(5,9,20,.95);
+    border-bottom:1px solid rgba(67,169,255,.18);
+    backdrop-filter:blur(14px);
 }
 
 .nav{
@@ -66,9 +67,9 @@ header{
     display:flex;
     align-items:center;
     gap:12px;
+    font-size:20px;
     font-weight:800;
     letter-spacing:1px;
-    font-size:20px;
 }
 
 .logo-mark{
@@ -80,8 +81,8 @@ header{
     align-items:center;
     justify-content:center;
     color:#43a9ff;
-    font-size:22px;
-    box-shadow:0 0 20px rgba(67,169,255,.25);
+    font-size:21px;
+    box-shadow:0 0 25px rgba(67,169,255,.25);
 }
 
 nav{
@@ -98,7 +99,7 @@ nav a{
 }
 
 nav a:hover{
-    color:#4db2ff;
+    color:#43a9ff;
 }
 
 /* HERO */
@@ -110,22 +111,22 @@ nav a:hover{
     position:relative;
     overflow:hidden;
     background:
-        radial-gradient(circle at 75% 30%,rgba(0,145,255,.18),transparent 32%),
-        radial-gradient(circle at 20% 80%,rgba(30,80,180,.13),transparent 30%),
-        #050914;
+    radial-gradient(circle at 75% 30%,rgba(0,145,255,.20),transparent 32%),
+    radial-gradient(circle at 15% 80%,rgba(30,80,180,.14),transparent 30%),
+    #050914;
 }
 
 .hero-grid{
     display:grid;
-    grid-template-columns:1.2fr .8fr;
+    grid-template-columns:1.15fr .85fr;
     gap:50px;
     align-items:center;
 }
 
 .badge{
     display:inline-block;
-    padding:8px 14px;
-    border:1px solid rgba(67,169,255,.4);
+    padding:8px 15px;
+    border:1px solid rgba(67,169,255,.45);
     border-radius:30px;
     color:#67bdff;
     font-size:13px;
@@ -134,21 +135,21 @@ nav a:hover{
 }
 
 .hero h1{
-    font-size:clamp(42px,7vw,78px);
-    line-height:1;
+    font-size:clamp(45px,7vw,82px);
+    line-height:.98;
     margin-bottom:24px;
-    letter-spacing:-2px;
+    letter-spacing:-3px;
 }
 
 .hero h1 span{
-    color:#42aaff;
+    color:#43a9ff;
 }
 
 .hero p{
-    max-width:650px;
+    max-width:680px;
     color:#aebbd0;
     font-size:18px;
-    margin-bottom:32px;
+    margin-bottom:30px;
 }
 
 .buttons{
@@ -182,44 +183,44 @@ nav a:hover{
 }
 
 .btn-secondary:hover{
-    border-color:#42aaff;
-    color:#42aaff;
+    border-color:#43a9ff;
+    color:#43a9ff;
 }
 
 .hero-card{
-    min-height:390px;
-    border:1px solid rgba(70,170,255,.22);
-    border-radius:28px;
+    min-height:410px;
+    border:1px solid rgba(70,170,255,.25);
+    border-radius:30px;
     background:
-        linear-gradient(145deg,rgba(22,43,73,.75),rgba(5,10,22,.9));
+    linear-gradient(145deg,rgba(22,43,73,.75),rgba(5,10,22,.94));
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
     overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,.35);
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
 }
 
 .hero-card:before{
     content:"";
-    width:260px;
-    height:260px;
+    width:270px;
+    height:270px;
     border:1px solid rgba(67,169,255,.4);
     border-radius:50%;
     position:absolute;
     box-shadow:
-        0 0 0 35px rgba(67,169,255,.035),
-        0 0 0 70px rgba(67,169,255,.025);
+    0 0 0 35px rgba(67,169,255,.035),
+    0 0 0 70px rgba(67,169,255,.025);
 }
 
 .hero-symbol{
-    font-size:110px;
+    font-size:105px;
     color:#4db2ff;
-    text-shadow:0 0 35px rgba(67,169,255,.5);
+    text-shadow:0 0 35px rgba(67,169,255,.55);
     z-index:2;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 section{
     padding:90px 0;
@@ -230,7 +231,7 @@ section{
     margin-bottom:55px;
 }
 
-.section-title .mini{
+.mini{
     color:#43a9ff;
     font-size:13px;
     font-weight:700;
@@ -245,7 +246,7 @@ section{
 
 .section-title p{
     color:#91a1b8;
-    max-width:700px;
+    max-width:720px;
     margin:auto;
 }
 
@@ -257,10 +258,10 @@ section{
 
 .zemra-box{
     border:1px solid rgba(67,169,255,.28);
-    border-radius:24px;
-    padding:38px;
+    border-radius:26px;
+    padding:40px;
     background:
-        linear-gradient(135deg,rgba(19,43,72,.6),rgba(7,13,26,.8));
+    linear-gradient(135deg,rgba(19,43,72,.65),rgba(7,13,26,.9));
     box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
@@ -272,25 +273,25 @@ section{
 }
 
 .zemra-box h3{
-    font-size:34px;
+    font-size:35px;
     margin-bottom:15px;
 }
 
 .zemra-box p{
     color:#abb9ce;
-    max-width:850px;
+    max-width:900px;
 }
 
 .features{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
-    margin-top:28px;
+    margin-top:30px;
 }
 
 .feature{
     padding:22px;
-    border-radius:15px;
+    border-radius:16px;
     background:rgba(255,255,255,.025);
     border:1px solid rgba(255,255,255,.07);
 }
@@ -298,7 +299,6 @@ section{
 .feature strong{
     display:block;
     margin-bottom:7px;
-    color:#eaf4ff;
 }
 
 .feature span{
@@ -308,6 +308,10 @@ section{
 
 /* PROJECTS */
 
+.projects{
+    background:#050914;
+}
+
 .projects-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -315,8 +319,8 @@ section{
 }
 
 .project{
-    padding:28px;
-    border-radius:20px;
+    padding:30px;
+    border-radius:22px;
     border:1px solid rgba(255,255,255,.08);
     background:linear-gradient(145deg,#0d1627,#080e1b);
     transition:.3s;
@@ -324,6 +328,498 @@ section{
 
 .project:hover{
     transform:translateY(-5px);
-    border-color:rgba(67,169,255,.35);
-    box-shadow:0 18px 45px rgba(0,0,
-    
+    border-color:rgba(67,169,255,.4);
+    box-shadow:0 18px 45px rgba(0,0,0,.3);
+}
+
+.project-number{
+    color:#43a9ff;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.project h3{
+    font-size:27px;
+    margin:8px 0 12px;
+}
+
+.project p{
+    color:#9eacc1;
+}
+
+.project-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.tag{
+    padding:6px 10px;
+    border-radius:20px;
+    background:rgba(67,169,255,.08);
+    border:1px solid rgba(67,169,255,.18);
+    color:#8dceff;
+    font-size:12px;
+}
+
+/* HYDRA */
+
+.hydra{
+    background:#070d1a;
+}
+
+.hydra-box{
+    border-radius:28px;
+    padding:38px;
+    background:
+    linear-gradient(145deg,#0c1c30,#07101d);
+    border:1px solid rgba(67,169,255,.25);
+}
+
+.hydra-box h3{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hydra-box>p{
+    color:#9eacc1;
+    max-width:850px;
+}
+
+.hydra-models{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:28px;
+}
+
+.model{
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.model strong{
+    color:#eaf4ff;
+}
+
+.model span{
+    display:block;
+    color:#8999b0;
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* GALLERY */
+
+.gallery{
+    background:#050914;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.gallery-card{
+    overflow:hidden;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#0b1322;
+}
+
+.gallery-card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+    transition:.35s;
+}
+
+.gallery-card:hover img{
+    transform:scale(1.04);
+}
+
+.gallery-caption{
+    padding:16px 18px;
+}
+
+.gallery-caption strong{
+    display:block;
+}
+
+.gallery-caption span{
+    color:#8999b0;
+    font-size:13px;
+}
+
+/* DISASTER */
+
+.disaster{
+    background:#070d1a;
+}
+
+.disaster-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.disaster-card{
+    overflow:hidden;
+    border-radius:20px;
+    background:#0b1322;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.disaster-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.disaster-content{
+    padding:22px;
+}
+
+.disaster-content h3{
+    margin-bottom:8px;
+    font-size:23px;
+}
+
+.disaster-content p{
+    color:#8999b0;
+    font-size:14px;
+}
+
+/* CONTACT */
+
+.contact{
+    text-align:center;
+    background:
+    radial-gradient(circle at center,rgba(25,142,232,.14),transparent 45%),
+    #050914;
+}
+
+.contact-box{
+    max-width:850px;
+    margin:auto;
+}
+
+.contact h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.contact p{
+    color:#9eacc1;
+    margin-bottom:28px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 0;
+    border-top:1px solid rgba(255,255,255,.07);
+    background:#03060d;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.footer-inner p{
+    color:#74849b;
+    font-size:13px;
+}
+
+.footer-brand{
+    font-weight:800;
+    color:#43a9ff;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .nav{
+        flex-direction:column;
+        padding:15px 0;
+    }
+
+    nav{
+        justify-content:center;
+        gap:13px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:90px 0;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        min-height:300px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hydra-models{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+    .disaster-grid{
+        grid-template-columns:1fr;
+    }
+
+    .zemra-box,
+    .hydra-box{
+        padding:25px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+
+@media(max-width:500px){
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section-title h2{
+        font-size:31px;
+    }
+
+    .hydra-models{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+
+<a href="#anasayfa" class="logo">
+<div class="logo-mark">A</div>
+<span>ANKA PROJECTS</span>
+</a>
+
+<nav>
+<a href="#anasayfa">Ana Sayfa</a>
+<a href="#zemra">ZEMRA</a>
+<a href="#projeler">Projeler</a>
+<a href="#hydra">HYDRA</a>
+<a href="#galeri">Görseller</a>
+<a href="#iletisim">İletişim</a>
+</nav>
+
+</div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="anasayfa">
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">BAĞIMSIZ TEKNOLOJİ & AR-GE PLATFORMU</div>
+
+<h1>
+GELECEĞİ<br>
+<span>BUGÜNDEN</span><br>
+TASARLIYORUZ
+</h1>
+
+<p>
+ANKA PROJECTS; afet teknolojileri, akıllı mobilite,
+enerji, tarım, robotik ve ileri mühendislik alanlarında
+yenilikçi projeler geliştiren bağımsız bir teknoloji platformudur.
+</p>
+
+<div class="buttons">
+<a href="#projeler" class="btn btn-primary">Projeleri İncele</a>
+<a href="#iletisim" class="btn btn-secondary">İletişime Geç</a>
+</div>
+
+</div>
+
+<div class="hero-card">
+<div class="hero-symbol">𓅃</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ZEMRA -->
+
+<section class="zemra" id="zemra">
+<div class="container">
+
+<div class="section-title">
+<div class="mini">ANA TEKNOLOJİ ODAĞI</div>
+<h2>ZEMRA</h2>
+<p>
+Afet öncesi, afet anı ve afet sonrası süreçlerde
+teknoloji tabanlı çözümler geliştirmeye yönelik proje.
+</p>
+</div>
+
+<div class="zemra-box">
+
+<div class="zemra-label">ZEMRA PROJECT</div>
+
+<h3>Afet Teknolojileri ve Akıllı Müdahale</h3>
+
+<p>
+ZEMRA; deprem gibi yüksek riskli afetlerde erken tespit,
+durum analizi, koordinasyon ve müdahale süreçlerini
+teknolojiyle desteklemeyi hedefleyen ANKA PROJECTS
+çalışmalarının temel projelerinden biridir.
+</p>
+
+<div class="features">
+
+<div class="feature">
+<strong>Erken Tespit</strong>
+<span>Risk ve olay verilerinin hızlı değerlendirilmesine yönelik teknoloji yaklaşımı.</span>
+</div>
+
+<div class="feature">
+<strong>Akıllı Koordinasyon</strong>
+<span>Afet ekipleri ve müdahale süreçleri için veri odaklı yapı.</span>
+</div>
+
+<div class="feature">
+<strong>Hızlı Müdahale</strong>
+<span>Arama, kurtarma ve saha operasyonlarını desteklemeye yönelik sistem yaklaşımı.</span>
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="projects" id="projeler">
+<div class="container">
+
+<div class="section-title">
+<div class="mini">ANKA PROJECTS</div>
+<h2>Projelerimiz</h2>
+<p>
+Farklı mühendislik alanlarında geliştirilen ANKA PROJECTS
+ekosisteminin ana projeleri.
+</p>
+</div>
+
+<div class="projects-grid">
+
+<div class="project">
+<div class="project-number">01 / MOBİLİTE</div>
+<h3>ANKA HYDRA</h3>
+<p>
+Yeni nesil mobilite ve araç teknolojileri ailesi.
+Şehir araçlarından SUV, performans, ticari araç,
+VAN ve otobüs çözümlerine kadar geniş bir platform.
+</p>
+<div class="project-tags">
+<span class="tag">Mobilite</span>
+<span class="tag">Enerji</span>
+<span class="tag">ADAS</span>
+<span class="tag">Araç Teknolojileri</span>
+</div>
+</div>
+
+
+<div class="project">
+<div class="project-number">02 / TARIM</div>
+<h3>ANKA ASI-01 PRO</h3>
+<p>
+Akıllı tarım, hedefli gübreleme ve sulama,
+su tasarrufu ve saha verimliliğine yönelik
+teknoloji projesi.
+</p>
+<div class="project-tags">
+<span class="tag">Akıllı Tarım</span>
+<span class="tag">Sulama</span>
+<span class="tag">Su Tasarrufu</span>
+</div>
+</div>
+
+
+<div class="project">
+<div class="project-number">03 / MOTOR TEKNOLOJİSİ</div>
+<h3>ANKA D-POWER</h3>
+<p>
+Mevcut dizel motorların verimliliğini artırmaya,
+yakıt tüketimini azaltmaya ve emisyonları düşürmeye
+yönelik motor optimizasyon sistemi.
+</p>
+<div class="project-tags">
+<span class="tag">VGT Turbo</span>
+<span class="tag">Intercooler</span>
+<span class="tag">48V</span>
+<span class="tag">Verimlilik</span>
+</div>
+</div>
+
+
+<div class="project">
+<div class="project-number">04 / ROBOTİK</div>
+<h3>ANKA REWALK</h3>
+<p>
+Hareket desteğine ihtiyaç duyan bireylerin günlük
+yaşam ve yürüme kabiliyetini desteklemeye yönelik
+giyilebilir robotik sistem projesi.
+</p>
+<div class="project-tags">
+<span class="tag">Robotik</span>
+<span class="tag">Exoskeleton</span>
+<span class="tag">Sensörler</span>
+<span class="tag">Mobilite</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- HYD
