@@ -97,3 +97,5 @@ Project: ANKA HYDRA
 Platform: Electric / Hydrogen Fuel-Cell / ADAS / Modular Mobility
 Status: Research & Development
 Repository: ANKA HYDRA
+
+<!-- GitHub Pages rebuild trigger: 2026-09-29 -->
