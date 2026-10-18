@@ -23,10 +23,10 @@ const PHOTO={
 sedan:"https://img.carstuff.com.tw/images/stories/2023/Jason/12/05/urbansuvconcept-7.jpg",
 suv:"https://cdn.mos.cms.futurecdn.net/5iHFe8mAyCXpCtfmtDvp9f-1920-80.jpg",
 sport:"https://rpmweb.ca/imager/medias/13319752/CEER-Exobot-Nouveau-Constructeur-Electrique-Arabie-Saoudite-18_ad02c10575d688bd3d9347fa060773a3.jpg",
-van:"https://vision-mobility.de/sites/default/files/public/styles/_galerie_2100x1400_/public/images-news-galerie/rightech-range-shot-bus-truck-1.jpg",
-van2:"https://vision-mobility.de/sites/default/files/public/styles/_galerie_2100x1400_/public/images-news-galerie/rightech-range-shot-bus-truck-1.jpg",
-bus:"https://vision-mobility.de/sites/default/files/public/styles/_galerie_2100x1400_/public/images-news-galerie/rightech-range-shot-bus-truck-1.jpg",
-truck:"https://vision-mobility.de/sites/default/files/public/styles/_galerie_2100x1400_/public/images-news-galerie/rightech-range-shot-bus-truck-1.jpg",
+van:"https://commons.wikimedia.org/wiki/Special:FilePath/Arrival_Van_Electric_(Fully_Charged_2022)_front.jpg",
+van2:"https://commons.wikimedia.org/wiki/Special:FilePath/2018_Chery_Karry_Youyou_EV.jpg",
+bus:"https://commons.wikimedia.org/wiki/Special:FilePath/Superbus_Golden_Dragon_electric_city_bus.jpg",
+truck:"https://commons.wikimedia.org/wiki/Special:FilePath/2022_DDP_Innovation_Terra_Truck.jpg",
 motorcycle:"https://images.welt.de/67dd5573559c903aae8262fb/9ea2aa0b239ca733bb6bf5de4260bb2b/ci102l-w1200/niu-hat-sein-angebotsspektrum-um-das-elektromotorrad-rqi-erweitert"
 };
 function svg(t,id){
@@ -34,5 +34,5 @@ const labels={sedan:"Elektrikli şehir aracı referans fotoğrafı",suv:"Elektri
 return '<img loading="lazy" decoding="async" src="'+PHOTO[t]+'" alt="'+labels[t]+'" referrerpolicy="no-referrer">';
 }
 function drawHero(t){const m=M.find(x=>x.t===t)||M[1];const art=svg(m.t,'hero'+m.t).replace('<svg ','<svg style="max-width:740px;width:100%;height:auto" ');document.getElementById('heroart').innerHTML=art+'<span class="note">'+m.c+' · '+m.n+' · referans fotoğrafı</span>'}
-const grid=document.getElementById('grid');M.forEach((m,i)=>{let e=document.createElement('article');e.className='card'+(!i?' active':'');e.innerHTML='<button type="button" aria-label="'+m.c+' modelini seç"><div class="carbox">'+svg(m.t,'c'+i)+'</div><div class="cb"><div class="idx">HYDRA CONCEPT / '+String(i+1).padStart(2,'0')+'</div><h3>'+m.c+'</h3><p>'+m.n+'</p></div></button>';e.querySelector('button').addEventListener('click',()=>{document.querySelectorAll('.card').forEach(x=>x.classList.remove('active'));e.classList.add('active');document.getElementById('selTitle').textContent=m.c;document.getElementById('selDesc').textContent=m.d;document.getElementById('selTags').innerHTML=m.tags.map(x=>'<span class="chip">'+x+'</span>').join('');drawHero(m.t);document.getElementById('heroart').scrollIntoView({behavior:'smooth',block:'center'})});grid.appendChild(e)});document.getElementById('selTags').innerHTML=M[0].tags.map(x=>'<span class="chip">'+x+'</span>').join('');drawHero('sedan');
+const grid=document.getElementById('grid');M.forEach((m,i)=>{let e=document.createElement('article');e.className='card'+(!i?' active':'');e.innerHTML='<button type="button" aria-label="'+m.c+' modelini seç"><div class="carbox">'+svg(m.t,'c'+i)+'</div><div class="cb"><div class="idx">HYDRA CONCEPT / '+String(i+1).padStart(2,'0')+'</div><h3>'+m.c+'</h3><p>'+m.n+'</p></div></button>';e.querySelector('button').addEventListener('click',()=>{document.querySelectorAll('.card').forEach(x=>x.classList.remove('active'));e.classList.add('active');document.getElementById('selTitle').textContent=m.c;document.getElementById('selDesc').textContent=m.d;document.getElementById('selTags').innerHTML=m.tags.map(x=>'<span class="chip">'+x+'</span>').join('');drawHero(m.t);window.scrollTo({top:0,behavior:'smooth'})});grid.appendChild(e)});document.getElementById('selTags').innerHTML=M[0].tags.map(x=>'<span class="chip">'+x+'</span>').join('');drawHero('sedan');
 </script></body></html>
