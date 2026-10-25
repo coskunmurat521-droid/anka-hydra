@@ -14,6 +14,21 @@
 <main class="wrap">
 <div class="stats"><div class="stat"><b id="projectCount">12</b><span>Proje başlığı</span></div><div class="stat"><b id="recordCount">0</b><span>Bu cihazdaki kayıt</span></div><div class="stat"><b>v0.1</b><span>İlk prototip</span></div></div>
 <h2 class="section-title">Proje seç</h2><div class="projects" id="projects"></div>
+<section class="panel" id="cloudAuth" style="margin:18px 0">
+<h2 class="section-title" style="margin-top:0">Güvenli ekip girişi</h2>
+<p class="muted">E-posta ile tek kullanımlık giriş bağlantısı gönderilir. Şifre istemeyiz. Giriş yapmadan bulut verilerine erişilmez.</p>
+<div id="authStatus" class="notice" style="margin-top:8px">Bağlantı hazırlanıyor…</div>
+<div id="signedOut">
+<label for="authEmail">E-posta adresin</label><input id="authEmail" type="email" autocomplete="email" placeholder="E-posta adresi" required>
+<div class="actions"><button type="button" id="sendMagicLink">Giriş bağlantısı gönder</button></div>
+</div>
+<div id="signedIn" class="hidden">
+<p id="signedInAs" class="muted"></p>
+<div class="grid"><div><label for="inviteEmail">Ekip üyesinin e-postası</label><input id="inviteEmail" type="email" placeholder="ekip@ornek.com"></div><div><label for="inviteRole">Yetki</label><select id="inviteRole"><option value="member">Üye — kayıtları görüntüleme</option><option value="admin">Admin — proje ve kayıt yönetimi</option></select></div></div>
+<div class="actions"><button type="button" id="inviteMember">Ekip daveti gönder</button><button type="button" class="secondary" id="signOut">Çıkış yap</button></div>
+<p class="muted">Davet gönderme yalnızca owner rolüne açıktır. Ekip üyeleri kayıtları okuyabilir; yalnızca owner/admin kayıt ekleyip değiştirebilir.</p>
+</div>
+</section>
 <section class="panel" style="margin-top:18px" id="entry">
 <h2 class="section-title" style="margin-top:0">Yeni saha / test kaydı</h2>
 <p class="muted">Önce bir proje seç. Ölçülmeyen alanları boş bırak; tahminleri gerçek ölçüm olarak girme.</p>
@@ -45,4 +60,45 @@ $("importFile").addEventListener("change",async e=>{const file=e.target.files&&e
 $("recordSearch").addEventListener("input",render);$("statusFilter").addEventListener("change",render);$("projectFilter").addEventListener("change",render);
 $("exportCsv").onclick=()=>{const rows=read();const fields=["id","created","project","stage","dataStatus","date","place","weather","measurement","observation","method","next"];const cell=v=>'"'+String(v??"").replace(/"/g,'""')+'"';const csv="\uFEFF"+[fields.map(cell).join(","),...rows.map(r=>fields.map(k=>cell(r[k])).join(","))].join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="anka-analiz-kayitlari.csv";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 if("serviceWorker"in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});init();
-</script></body></html>
+</script>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+const SUPABASE_URL = "https://jgaqwojgjjweyqnxcoqr.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_IDrxeGcEG6W3VeFa1IEo0A_swZXgDsL";
+const sb = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
+const byId = id => document.getElementById(id);
+const status = (message, isError=false) => {
+  const el=byId("authStatus"); el.textContent=message;
+  el.style.borderLeftColor=isError?"#f87171":"#24a8ff";
+};
+async function paintSession(session) {
+  byId("signedOut").classList.toggle("hidden",!!session);
+  byId("signedIn").classList.toggle("hidden",!session);
+  if(!session){status("Henüz giriş yapılmadı. E-posta bağlantısı ile giriş yap.");return;}
+  byId("signedInAs").textContent="Giriş yapıldı: "+(session.user.email||"");
+  const {data: member, error} = await sb.from("anka_team_members").select("role").eq("email",(session.user.email||"").toLowerCase()).maybeSingle();
+  if(error || !member){status("Oturum açıldı ancak ekip yetkisi doğrulanamadı. Yönetici hesabı ve e-posta onayını kontrol et.",true);return;}
+  status("Güvenli oturum açık · Rol: "+member.role+". Bulut kayıt senkronizasyonu henüz bağlanmadı.");
+  byId("inviteMember").disabled=member.role!=="owner";
+}
+byId("sendMagicLink").addEventListener("click",async()=>{
+  const email=byId("authEmail").value.trim().toLowerCase();
+  if(!email){status("Önce e-posta adresini yaz.",true);return;}
+  status("Giriş bağlantısı gönderiliyor…");
+  const {error}=await sb.auth.signInWithOtp({email, options:{emailRedirectTo:location.href.split("#")[0]}});
+  status(error?"Bağlantı gönderilemedi: "+error.message:"E-posta gönderim isteği tamamlandı. Gelen kutunu ve spam klasörünü kontrol et.",!!error);
+});
+byId("inviteMember").addEventListener("click",async()=>{
+  const email=byId("inviteEmail").value.trim().toLowerCase(), role=byId("inviteRole").value;
+  if(!email){status("Davet edilecek e-posta adresini yaz.",true);return;}
+  status("Ekip daveti gönderiliyor…");
+  const {data,error}=await sb.functions.invoke("anka-invite-team-member",{body:{email,role}});
+  status(error?"Davet başarısız: "+error.message:(data?.ok?"Davet gönderildi: "+email+" ("+role+").":"Davet sonucu doğrulanamadı."),!!error||!data?.ok);
+});
+byId("signOut").addEventListener("click",async()=>{const {error}=await sb.auth.signOut();status(error?"Çıkış yapılamadı: "+error.message:"Çıkış yapıldı.",!!error);});
+sb.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>paintSession(session),0);});
+const {data:{session},error}=await sb.auth.getSession();
+if(error) status("Supabase oturumu kontrol edilemedi: "+error.message,true); else await paintSession(session);
+</script>
+
+</body></html>
