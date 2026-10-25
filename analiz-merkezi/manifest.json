@@ -1,0 +1,11 @@
+{
+  "name": "ANKA Akıllı Analiz Merkezi",
+  "short_name": "ANKA Analiz",
+  "description": "Tüm ANKA projeleri için saha kaydı ve analiz hazırlığı",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#071a2e",
+  "icons": []
+}
