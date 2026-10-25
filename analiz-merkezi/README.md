@@ -9,7 +9,7 @@ Bu klasör, ANKA projeleri için saha/test kaydı ve analiz altyapısını içer
 - JSON dışa aktarma ve tekil kayıt silme vardır.
 - Supabase bağlantısı, kullanıcı girişi ve gerçek yapay zekâ analizi henüz bağlı değildir.
 - `database-schema-draft.sql` mevcut veritabanı yapısı doğrulanmadan çalıştırılmamalıdır.
-- `diagnostik-ve-guvenlik-kontrol.sql` salt-okunur teşhis sorgusudur; kayıtları veya ayarları değiştirmez.
+- `diagnostik-ve-guvenlik-kontrol.sql` salt-okunur teşhis sorgusudur; kayıtları veya ayarları değiştirmez. Sütun keşfi, sabit tablo listesi yerine `anka%` ile başlayan tüm tabloları kapsar.
 - `TEST-PLANI.md` yerel prototipin manuel test adımlarını ve bulut bağlantısı için güvenlik kontrollerini içerir.
 - `BULUT-ENTEGRASYON-PLANI.md` mevcut veritabanını koruyarak Supabase bağlantısına geçiş adımlarını açıklar.
 - Service worker önbelleği `v03` sürümüne yükseltildi; bu, eski önbelleğin yeni sayfayı göstermesi riskini azaltır, ancak her cihazda anında güncelleneceğini garanti etmez.
