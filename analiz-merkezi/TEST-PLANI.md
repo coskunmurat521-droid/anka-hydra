@@ -15,6 +15,7 @@ Bu kontrol listesi testin nasıl yapılacağını tanımlar. Maddeler işaretlen
 - [ ] Veri durumu filtresi Gözlem, Ölçüm, Tahmin ve Doğrulanmış kayıtlarını ayrı ayrı gösteriyor.
 - [ ] Arama kutusu ve veri durumu filtresi birlikte doğru çalışıyor.
 - [ ] Proje filtresi tek projeyi gösteriyor; proje, veri durumu ve metin araması birlikte doğru çalışıyor.
+- [ ] Filtre sonucu sayacı, gösterilen kayıt sayısını ve toplam kayıt sayısını doğru bildiriyor.
 - [ ] JSON yedeği indiriliyor ve geçerli JSON olarak açılıyor.
 - [ ] CSV dosyası Türkçe karakterleri ve satır sonlarını doğru koruyor.
 - [ ] Bozuk JSON dosyası yüklenince anlaşılır hata gösteriliyor.
