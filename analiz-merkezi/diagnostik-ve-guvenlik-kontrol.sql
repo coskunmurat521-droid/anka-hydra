@@ -50,7 +50,7 @@ columns_info AS (
     ) AS ayrinti
   FROM information_schema.columns
   WHERE table_schema = 'public'
-    AND table_name IN ('anka_projects', 'anka_field_records', 'anka_records', 'anka_alan_kayitlari', 'anka_projeleri')
+    AND table_name LIKE 'anka%'
 ),
 foreign_keys AS (
   SELECT
