@@ -12,6 +12,8 @@ Bu kontrol listesi testin nasıl yapılacağını tanımlar. Maddeler işaretlen
 
 ## B. Arama ve dışa aktarma
 - [ ] Arama proje, yer, ölçüm ve gözlem metinlerinde sonuçları daraltıyor.
+- [ ] Veri durumu filtresi Gözlem, Ölçüm, Tahmin ve Doğrulanmış kayıtlarını ayrı ayrı gösteriyor.
+- [ ] Arama kutusu ve veri durumu filtresi birlikte doğru çalışıyor.
 - [ ] JSON yedeği indiriliyor ve geçerli JSON olarak açılıyor.
 - [ ] CSV dosyası Türkçe karakterleri ve satır sonlarını doğru koruyor.
 - [ ] Bozuk JSON dosyası yüklenince anlaşılır hata gösteriliyor.
