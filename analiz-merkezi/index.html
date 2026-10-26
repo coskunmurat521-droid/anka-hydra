@@ -39,7 +39,14 @@
 <label for="next">Sonraki güvenli adım</label><textarea id="next" placeholder="Örn. uygun sensörü seç, test alanını güvenli hale getir"></textarea>
 <div class="actions"><button type="submit">Kaydı bu cihaza kaydet</button><button type="button" class="secondary" id="export">Kayıtları JSON indir</button><button type="button" class="secondary" id="importBtn">Yedekten geri yükle</button><input id="importFile" type="file" accept=".json,application/json" class="hidden" aria-label="JSON yedek dosyası seç"></div>
 </form>
-<div class="notice">İlk prototip notu: Kayıtlar şimdilik yalnızca bu tarayıcıda ve bu cihazda saklanır. Henüz ortak bulut veri tabanı, kullanıcı girişi veya gerçek yapay zekâ bağlantısı yoktur. Tarayıcı verilerini silmek kayıtları silebilir.</div>
+<div class="notice" id="storageNotice">Kayıtlar önce bu cihazda saklanır. Ekip girişi yapıldıktan sonra yetkili hesap yerel kayıtları ortak buluta aktarabilir. Tarayıcı verilerini silmeden önce JSON yedeği al.</div>
+</section>
+<section class="panel" id="cloudPanel" style="margin-top:18px">
+<h2 class="section-title" style="margin-top:0">Ortak bulut kayıtları</h2>
+<p class="muted">Giriş yapmış ekip üyeleri ortak kayıtları görebilir. Yerel kayıtların buluta aktarılması yalnızca owner/admin rolüne açıktır.</p>
+<div id="cloudStatus" class="notice">Bulut kayıtlarını görmek için güvenli ekip girişi yap.</div>
+<div class="actions"><button type="button" class="secondary" id="refreshCloud">Bulut kayıtlarını yenile</button><button type="button" id="syncLocal" disabled>Yerel kayıtları buluta aktar</button></div>
+<div class="records" id="cloudRecords"></div>
 </section>
 <h2 class="section-title">Son kayıtlar</h2><div class="panel" style="margin-bottom:10px"><div class="grid"><div><label for="recordSearch">Kayıtlarda ara</label><input id="recordSearch" type="search" placeholder="Proje, gözlem, yer veya ölçüm ara"></div><div><label for="projectFilter">Projeye göre süz</label><select id="projectFilter"><option value="">Tüm projeler</option></select></div><div><label for="statusFilter">Veri durumuna göre süz</label><select id="statusFilter"><option value="">Tüm veri durumları</option><option>Gözlem</option><option>Ölçüm</option><option>Tahmin</option><option>Doğrulanmış</option></select></div></div><div class="actions"><button type="button" class="secondary" id="exportCsv">Kayıtları CSV indir</button></div><p class="muted" id="filterSummary" aria-live="polite">Filtre sonucu: 0 kayıt</p></div><div class="records" id="records"></div>
 <footer>ANKA Akıllı Analiz Merkezi · İlk prototip · Teknik ve güvenlik açısından kritik kararlar uzman doğrulaması gerektirir.</footer>
@@ -71,21 +78,175 @@ const status = (message, isError=false) => {
   const el=byId("authStatus"); el.textContent=message;
   el.style.borderLeftColor=isError?"#f87171":"#24a8ff";
 };
+const cloudStatus = (message, isError=false) => {
+  const el=byId("cloudStatus"); el.textContent=message;
+  el.style.borderLeftColor=isError?"#f87171":"#24a8ff";
+};
+const escHtml = value => String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let currentRole = null;
+let cloudProjects = [];
+let cloudRows = [];
+const canWriteCloud = () => currentRole === "owner" || currentRole === "admin";
+
+function renderCloudRows() {
+  const target=byId("cloudRecords");
+  if (!cloudRows.length) {
+    target.innerHTML='<div class="panel muted">Bulutta henüz kayıt yok.</div>';
+    return;
+  }
+  target.innerHTML=cloudRows.slice(0,50).map(row=>{
+    const joined=Array.isArray(row.anka_projects)?row.anka_projects[0]:row.anka_projects;
+    const projectName=joined?.name || cloudProjects.find(p=>p.id===row.project_id)?.name || "Proje";
+    const measured=row.measured_values && typeof row.measured_values==="object" ? row.measured_values : {};
+    const measurement=measured.measurement || "";
+    return '<article class="record"><h3>'+escHtml(projectName)+' · '+escHtml(row.stage||"Gözlem")+'</h3>'+
+      '<div class="muted">Veri durumu: '+escHtml(row.data_status||"Belirtilmemiş")+' · '+escHtml(String(row.observed_at||"").replace("T"," ").slice(0,16))+'</div>'+
+      '<div class="muted">'+escHtml(row.location||"Yer belirtilmedi")+(row.weather?" · "+escHtml(row.weather):"")+'</div>'+
+      '<p>'+escHtml(row.observation||"")+'</p>'+
+      (measurement?'<div><b>Ölçüm:</b> '+escHtml(measurement)+'</div>':'<div class="muted">Ölçüm girilmedi</div>')+
+      '<div class="muted">Kayıt kodu: '+escHtml(row.record_code||"")+'</div></article>';
+  }).join("");
+}
+async function loadCloudProjects() {
+  const {data,error}=await sb.from("anka_projects").select("id,code,name").order("name");
+  if(error) {
+    cloudStatus("Proje listesi alınamadı: "+error.message,true);
+    return false;
+  }
+  cloudProjects=data||[];
+  const previous=byId("project").value;
+  byId("project").innerHTML=cloudProjects.map(p=>'<option value="'+escHtml(p.name)+'">'+escHtml(p.name)+'</option>').join("");
+  if(cloudProjects.some(p=>p.name===previous)) byId("project").value=previous;
+  const oldFilter=byId("projectFilter").value;
+  byId("projectFilter").innerHTML='<option value="">Tüm projeler</option>'+cloudProjects.map(p=>'<option value="'+escHtml(p.name)+'">'+escHtml(p.name)+'</option>').join("");
+  if(cloudProjects.some(p=>p.name===oldFilter)) byId("projectFilter").value=oldFilter;
+  return true;
+}
+async function loadCloudRecords() {
+  const {data,error}=await sb.from("anka_field_records")
+    .select("id,record_code,project_id,observed_at,location,stage,data_status,weather,observation,measured_values,missing_data,next_steps,created_at,anka_projects(name)")
+    .order("observed_at",{ascending:false}).limit(50);
+  if(error) {
+    cloudStatus("Bulut kayıtları okunamadı: "+error.message,true);
+    return false;
+  }
+  cloudRows=data||[];
+  renderCloudRows();
+  cloudStatus("Bulut bağlantısı çalışıyor · "+cloudRows.length+" kayıt gösteriliyor"+(cloudRows.length===50?" (en yeni 50 kayıt)":"")+" · Rol: "+currentRole+".");
+  return true;
+}
+async function syncLocalRecords() {
+  if(!canWriteCloud()) {
+    cloudStatus("Buluta kayıt aktarmak için owner veya admin yetkisi gerekir.",true);
+    return;
+  }
+  let localRows=[];
+  try {
+    const parsed=JSON.parse(localStorage.getItem("ankaAnalizRecords")||"[]");
+    localRows=Array.isArray(parsed)?parsed.filter(r=>r&&typeof r==="object"&&typeof r.id==="string"&&typeof r.project==="string"&&typeof r.observation==="string"):[];
+  } catch {
+    cloudStatus("Bu cihazdaki yerel kayıtlar okunamadı. Önce JSON yedeği alıp sayfayı yenile.",true);
+    return;
+  }
+  if(!localRows.length) {
+    cloudStatus("Aktarılacak yerel kayıt yok.");
+    return;
+  }
+  if(!cloudProjects.length && !(await loadCloudProjects())) return;
+  const candidates=localRows.map(r=>({local:r,recordCode:"LOCAL-"+r.id}));
+  const {data:existing,error:checkError}=await sb.from("anka_field_records").select("record_code").in("record_code",candidates.map(c=>c.recordCode));
+  if(checkError) {
+    cloudStatus("Buluttaki mevcut kayıtlar kontrol edilemedi: "+checkError.message,true);
+    return;
+  }
+  const existingCodes=new Set((existing||[]).map(r=>r.record_code));
+  const projectByName=new Map(cloudProjects.map(p=>[p.name,p.id]));
+  const payload=[];
+  const skipped=[];
+  for(const candidate of candidates) {
+    const r=candidate.local;
+    if(existingCodes.has(candidate.recordCode)) continue;
+    const projectId=projectByName.get(r.project);
+    if(!projectId) { skipped.push(r.project); continue; }
+    let observedAt=new Date().toISOString();
+    if(r.date) {
+      const parsedDate=new Date(r.date);
+      if(!Number.isNaN(parsedDate.getTime())) observedAt=parsedDate.toISOString();
+    } else if(r.created) {
+      const parsedDate=new Date(r.created);
+      if(!Number.isNaN(parsedDate.getTime())) observedAt=parsedDate.toISOString();
+    }
+    payload.push({
+      project_id:projectId,
+      record_code:candidate.recordCode,
+      observed_at:observedAt,
+      location:r.place||null,
+      stage:r.stage||"Gözlem",
+      data_status:r.dataStatus||"Gözlem",
+      weather:r.weather||null,
+      observation:r.observation,
+      measured_values:{measurement:r.measurement||null,method:r.method||null,local_record_id:r.id},
+      missing_data:[],
+      next_steps:r.next?[r.next]:[]
+    });
+  }
+  if(!payload.length) {
+    cloudStatus(skipped.length?"Yeni kayıt aktarılmadı; proje eşleşmesi olmayan kayıt sayısı: "+skipped.length+".":"Yerel kayıtların tamamı daha önce buluta aktarılmış.",!!skipped.length);
+    await loadCloudRecords();
+    return;
+  }
+  cloudStatus(payload.length+" kayıt buluta aktarılıyor…");
+  const {data,error}=await sb.from("anka_field_records").insert(payload).select("id,record_code");
+  if(error) {
+    cloudStatus("Buluta aktarım başarısız: "+error.message,true);
+    return;
+  }
+  const insertedCodes=new Set((data||[]).map(r=>r.record_code));
+  try {
+    const current=JSON.parse(localStorage.getItem("ankaAnalizRecords")||"[]");
+    if(Array.isArray(current)) {
+      localStorage.setItem("ankaAnalizRecords",JSON.stringify(current.map(r=>({...r,cloudSynced:insertedCodes.has("LOCAL-"+r.id)||existingCodes.has("LOCAL-"+r.id)?true:!!r.cloudSynced}))));
+    }
+  } catch {}
+  await loadCloudRecords();
+  cloudStatus("Aktarım tamamlandı · "+insertedCodes.size+" yeni kayıt buluta yazıldı."+(skipped.length?" Proje eşleşmesi olmayan "+skipped.length+" kayıt atlandı.":""),!!skipped.length);
+}
 async function paintSession(session) {
   byId("signedOut").classList.toggle("hidden",!!session);
   byId("signedIn").classList.toggle("hidden",!session);
-  if(!session){status("Henüz giriş yapılmadı. E-posta bağlantısı ile giriş yap.");return;}
+  byId("syncLocal").disabled=true;
+  if(!session) {
+    currentRole=null;
+    byId("signedInAs").textContent="";
+    status("Henüz giriş yapılmadı. E-posta bağlantısı ile giriş yap.");
+    cloudStatus("Bulut kayıtlarını görmek için güvenli ekip girişi yap.");
+    byId("storageNotice").textContent="Kayıtlar önce bu cihazda saklanır. Giriş yaptıktan sonra yetkili hesap yerel kayıtları ortak buluta aktarabilir. Tarayıcı verilerini silmeden önce JSON yedeği al.";
+    return;
+  }
   byId("signedInAs").textContent="Giriş yapıldı: "+(session.user.email||"");
-  const {data: member, error} = await sb.from("anka_team_members").select("role").eq("email",(session.user.email||"").toLowerCase()).maybeSingle();
-  if(error || !member){status("Oturum açıldı ancak ekip yetkisi doğrulanamadı. Yönetici hesabı ve e-posta onayını kontrol et.",true);return;}
-  status("Güvenli oturum açık · Rol: "+member.role+". Bulut kayıt senkronizasyonu henüz bağlanmadı.");
-  byId("inviteMember").disabled=member.role!=="owner";
+  const {data: member,error}=await sb.from("anka_team_members").select("role").eq("email",(session.user.email||"").toLowerCase()).maybeSingle();
+  if(error || !member) {
+    currentRole=null;
+    status("Oturum açıldı ancak ekip yetkisi doğrulanamadı. Yönetici hesabı ve e-posta onayını kontrol et.",true);
+    cloudStatus("Bu hesap ekip listesinde bulunamadığı için ortak kayıtlar açılmadı.",true);
+    byId("storageNotice").textContent="Bu oturumun ekip yetkisi doğrulanmadı; kayıtlar yalnızca bu cihazda kalır.";
+    return;
+  }
+  currentRole=member.role;
+  byId("inviteMember").disabled=currentRole!=="owner";
+  byId("syncLocal").disabled=!canWriteCloud();
+  status("Güvenli oturum açık · Rol: "+currentRole+".");
+  byId("storageNotice").textContent=canWriteCloud()
+    ?"Kayıtlar önce bu cihazda saklanır. Owner/admin hesabı, aşağıdaki düğmeyle yerel kayıtları ortak buluta aktarabilir."
+    :"Kayıtlar bu cihazda saklanır. Bu rol ortak bulut kayıtlarını görüntüleyebilir; aktarım için owner/admin gerekir.";
+  cloudStatus("Bulut bağlantısı kontrol ediliyor…");
+  if(await loadCloudProjects()) await loadCloudRecords();
 }
 byId("sendMagicLink").addEventListener("click",async()=>{
   const email=byId("authEmail").value.trim().toLowerCase();
   if(!email){status("Önce e-posta adresini yaz.",true);return;}
   status("Giriş bağlantısı gönderiliyor…");
-  const {error}=await sb.auth.signInWithOtp({email, options:{emailRedirectTo:location.href.split("#")[0]}});
+  const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
   status(error?"Bağlantı gönderilemedi: "+error.message:"E-posta gönderim isteği tamamlandı. Gelen kutunu ve spam klasörünü kontrol et.",!!error);
 });
 byId("inviteMember").addEventListener("click",async()=>{
@@ -95,7 +256,17 @@ byId("inviteMember").addEventListener("click",async()=>{
   const {data,error}=await sb.functions.invoke("anka-invite-team-member",{body:{email,role}});
   status(error?"Davet başarısız: "+error.message:(data?.ok?"Davet gönderildi: "+email+" ("+role+").":"Davet sonucu doğrulanamadı."),!!error||!data?.ok);
 });
-byId("signOut").addEventListener("click",async()=>{const {error}=await sb.auth.signOut();status(error?"Çıkış yapılamadı: "+error.message:"Çıkış yapıldı.",!!error);});
+byId("signOut").addEventListener("click",async()=>{
+  const {error}=await sb.auth.signOut();
+  if(error) status("Çıkış yapılamadı: "+error.message,true);
+  else await paintSession(null);
+});
+byId("refreshCloud").addEventListener("click",async()=>{
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session || !currentRole) {cloudStatus("Önce yetkili ekip hesabıyla giriş yap.",true);return;}
+  if(await loadCloudProjects()) await loadCloudRecords();
+});
+byId("syncLocal").addEventListener("click",syncLocalRecords);
 sb.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>paintSession(session),0);});
 const {data:{session},error}=await sb.auth.getSession();
 if(error) status("Supabase oturumu kontrol edilemedi: "+error.message,true); else await paintSession(session);
