@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<meta name="description" content="ANKA AERIS hava durumu ve tahmine dayalı bilgilendirme prototipi. Resmî afet uyarısı değildir.">
+<title>ANKA AERIS | Hava ve Risk Gözlem — Test Sürümü</title>
+<style>
+:root{color-scheme:dark;--bg:#071426;--panel:#10243b;--line:#24435f;--text:#edf6ff;--muted:#a9bfd3;--blue:#55b8ff;--warn:#ffd166;--red:#ff7777;--green:#70e0b2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#12365a 0,#071426 55%);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:900px;margin:auto;padding:20px 14px 36px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.logo{width:52px;height:52px;flex:0 0 52px;border:1px solid #3976a7;border-radius:16px;display:grid;place-items:center;color:var(--blue);font-size:26px;background:#0b2138}
+.eyebrow{font-size:12px;letter-spacing:2px;color:var(--blue);font-weight:800}
+.sub,.small{color:var(--muted);font-size:13px}
+.panel{background:rgba(16,36,59,.92);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 10px 30px #0002}
+h1{font-size:23px;margin:0}h2{font-size:17px;margin:0 0 12px}
+.controls{display:flex;gap:10px;flex-wrap:wrap}
+.controls select,.controls button{font:inherit;border-radius:12px;border:1px solid #3a5a77;padding:12px;background:#091a2c;color:var(--text);min-height:46px}
+.controls select{flex:1;min-width:180px}.controls button{background:#0c83d7;border-color:#0c83d7;font-weight:750;cursor:pointer}
+.controls button:disabled{opacity:.6;cursor:wait}
+.status{font-size:13px;color:var(--muted);margin-top:10px}
+.status.error{color:var(--red)}.status.success{color:var(--green)}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.temp{font-size:54px;font-weight:800;letter-spacing:-2px}.condition{color:var(--muted)}.weather-icon{font-size:44px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.metric{background:#0a1b2d;border:1px solid #1c3b56;border-radius:14px;padding:12px;min-width:0}
+.metric .label{font-size:12px;color:var(--muted)}.metric .value{font-size:20px;font-weight:750;margin-top:5px;overflow-wrap:anywhere}
+.days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.day{background:#0a1b2d;border:1px solid #1c3b56;border-radius:13px;padding:10px;text-align:center;min-width:0}
+.day .d{font-size:12px;color:var(--muted)}.day .i{font-size:24px;margin:5px}.day .t{font-weight:750}.day .rain{font-size:12px;color:var(--blue);margin-top:5px}
+.risk{border-left:4px solid var(--green)}.risk.warn{border-left-color:var(--warn)}.risk.high{border-left-color:var(--red)}.risk.unknown{border-left-color:#9aaabd}
+.risk-title{font-weight:800;margin-bottom:4px}.small{font-size:12px}
+footer{font-size:12px;color:var(--muted);padding:12px 2px}a{color:var(--blue)}.loading{opacity:.7}
+.notice{border:1px solid #6b5526;background:#302817;border-radius:12px;padding:12px;margin:12px 0;font-size:13px}
+.links{display:flex;gap:12px;flex-wrap:wrap}
+:focus-visible{outline:3px solid var(--warn);outline-offset:3px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.temp{font-size:68px}}
+@media(max-width:390px){.days{grid-template-columns:1fr}.day{text-align:left}.day .i{display:inline-block;margin-right:8px}}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+  <div class="logo" aria-hidden="true">🪽</div>
+  <div><div class="eyebrow">ANKA PROJECTS</div><h1>ANKA AERIS</h1><div class="sub">Hava durumu ve tahmine dayalı bilgilendirme göstergeleri — test sürümü</div></div>
+</header>
+
+<div class="notice" role="note">
+  <strong>Önemli güvenlik notu:</strong> Bu sayfa bir yazılım prototipidir; resmî afet uyarısı vermez, tehlikeyi dışlamaz ve acil durum kararlarının yerine geçmez. Uyarı ve talimatlar için Meteoroloji Genel Müdürlüğü (MGM) ve AFAD duyurularını kontrol edin.
+</div>
+
+<section class="panel">
+  <h2>Konum seç</h2>
+  <div class="controls">
+    <select id="city" aria-label="Şehir seç">
+      <option value="36.9914,35.3308">Adana</option>
+      <option value="37.7648,38.2786">Adıyaman</option>
+      <option value="38.7569,30.5387">Afyonkarahisar</option>
+      <option value="39.7191,43.0506">Ağrı</option>
+      <option value="38.3687,34.0370">Aksaray</option>
+      <option value="40.6539,35.8330">Amasya</option>
+      <option value="39.9334,32.8597">Ankara</option>
+      <option value="36.8969,30.7133">Antalya</option>
+      <option value="41.1105,42.7022">Ardahan</option>
+      <option value="41.1828,41.8183">Artvin</option>
+      <option value="37.8450,27.8396">Aydın</option>
+      <option value="39.6484,27.8826">Balıkesir</option>
+      <option value="41.6344,32.3375">Bartın</option>
+      <option value="37.8812,41.1351">Batman</option>
+      <option value="40.2552,40.2249">Bayburt</option>
+      <option value="40.0567,30.0665">Bilecik</option>
+      <option value="38.8854,40.4980">Bingöl</option>
+      <option value="38.4006,42.1095">Bitlis</option>
+      <option value="40.7358,31.6061">Bolu</option>
+      <option value="37.7203,30.2908">Burdur</option>
+      <option value="40.1885,29.0610">Bursa</option>
+      <option value="40.1553,26.4142">Çanakkale</option>
+      <option value="40.6013,33.6134">Çankırı</option>
+      <option value="40.5506,34.9556">Çorum</option>
+      <option value="37.7765,29.0864">Denizli</option>
+      <option value="37.9144,40.2306">Diyarbakır</option>
+      <option value="40.8438,31.1565">Düzce</option>
+      <option value="41.6771,26.5557">Edirne</option>
+      <option value="38.6810,39.2264">Elazığ</option>
+      <option value="39.7500,39.5000">Erzincan</option>
+      <option value="39.9055,41.2658">Erzurum</option>
+      <option value="39.7767,30.5206">Eskişehir</option>
+      <option value="37.0662,37.3833">Gaziantep</option>
+      <option value="40.9128,38.3895">Giresun</option>
+      <option value="40.4603,39.4814">Gümüşhane</option>
+      <option value="37.5744,43.7408">Hakkâri</option>
+      <option value="36.2021,36.1600">Hatay</option>
+      <option value="39.9237,44.0450">Iğdır</option>
+      <option value="37.7648,30.5566">Isparta</option>
+      <option value="41.0082,28.9784">İstanbul</option>
+      <option value="38.4237,27.1428">İzmir</option>
+      <option value="37.5753,36.9228">Kahramanmaraş</option>
+      <option value="41.2061,32.6204">Karabük</option>
+      <option value="37.1811,33.2150">Karaman</option>
+      <option value="40.6013,43.0975">Kars</option>
+      <option value="41.3766,33.7765">Kastamonu</option>
+      <option value="38.7312,35.4787">Kayseri</option>
+      <option value="39.8468,33.5153">Kırıkkale</option>
+      <option value="41.7333,27.2167">Kırklareli</option>
+      <option value="39.1458,34.1600">Kırşehir</option>
+      <option value="36.7184,37.1212">Kilis</option>
+      <option value="40.7654,29.9408">Kocaeli</option>
+      <option value="37.8746,32.4932">Konya</option>
+      <option value="39.4167,29.9833">Kütahya</option>
+      <option value="38.3552,38.3095">Malatya</option>
+      <option value="38.6191,27.4289">Manisa</option>
+      <option value="37.3212,40.7245">Mardin</option>
+      <option value="36.8121,34.6415">Mersin</option>
+      <option value="37.2153,28.3636">Muğla</option>
+      <option value="38.9462,41.7539">Muş</option>
+      <option value="38.6244,34.7239">Nevşehir</option>
+      <option value="37.9698,34.6766">Niğde</option>
+      <option value="40.9839,37.8764">Ordu</option>
+      <option value="37.0742,36.2478">Osmaniye</option>
+      <option value="41.0201,40.5234">Rize</option>
+      <option value="40.6940,30.4358">Sakarya</option>
+      <option value="41.2867,36.3300">Samsun</option>
+      <option value="37.9333,41.9500">Siirt</option>
+      <option value="42.0268,35.1511">Sinop</option>
+      <option value="39.7477,37.0179">Sivas</option>
+      <option value="37.1674,38.7955">Şanlıurfa</option>
+      <option value="37.5164,42.4611">Şırnak</option>
+      <option value="40.9780,27.5110">Tekirdağ</option>
+      <option value="40.3167,36.5500">Tokat</option>
+      <option value="41.0027,39.7168">Trabzon</option>
+      <option value="39.1079,39.5401">Tunceli</option>
+      <option value="38.6823,29.4082">Uşak</option>
+      <option value="38.5012,43.3729">Van</option>
+      <option value="40.6500,29.2667">Yalova</option>
+      <option value="39.8181,34.8147">Yozgat</option>
+      <option value="41.4564,31.7987">Zonguldak</option>
+    </select>
+    <button id="refresh" type="button">Verileri getir</button>
+  </div>
+  <div id="status" class="status" role="status" aria-live="polite">Hava verileri yüklenmeye hazır.</div>
+</section>
+
+<section class="panel" id="nowPanel" aria-busy="false">
+  <div class="hero">
+    <div><div class="sub" id="place">Malatya</div><div class="temp" id="temp">—</div><div id="condition" class="condition">Veri bekleniyor</div></div>
+    <div class="weather-icon" id="icon" aria-hidden="true">🌤️</div>
+  </div>
+  <div class="small" id="updated" style="margin-top:10px">Veri zamanı: —</div>
+</section>
+
+<section class="panel">
+  <h2>Güncel ölçümler / tahmin</h2>
+  <div class="grid">
+    <div class="metric"><div class="label">Hissedilen</div><div class="value" id="feels">—</div></div>
+    <div class="metric"><div class="label">Nem</div><div class="value" id="humidity">—</div></div>
+    <div class="metric"><div class="label">Rüzgâr</div><div class="value" id="wind">—</div></div>
+    <div class="metric"><div class="label">Anlık yağış</div><div class="value" id="rain">—</div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>3 günlük tahmin</h2>
+  <div id="days" class="days"><div class="day">Veri bekleniyor…</div></div>
+</section>
+
+<section class="panel">
+  <h2>ANKA AERIS tahmine dayalı gösterge</h2>
+  <div id="risk" class="risk panel unknown" style="margin:0;padding:12px">
+    <div class="risk-title">Henüz değerlendirilemedi</div>
+    <div class="small">Güncel veriler alındığında, sınırlı ve deneysel bir tahmin göstergesi hazırlanır.</div>
+  </div>
+  <p class="small">Eşikler deneysel olup resmî meteorolojik uyarı ölçütleri değildir. Günlük toplamlar kısa süreli şiddetli yağışı gizleyebilir. “Belirgin gösterge yok” ifadesi “tehlike yok” anlamına gelmez.</p>
+</section>
+
+<section class="panel">
+  <h2>Resmî kaynaklar</h2>
+  <div class="links">
+    <a href="https://www.mgm.gov.tr/" target="_blank" rel="noopener noreferrer">Meteoroloji Genel Müdürlüğü (MGM)</a>
+    <a href="https://www.afad.gov.tr/" target="_blank" rel="noopener noreferrer">AFAD</a>
+  </div>
+  <p class="small">Bu prototip resmî kaynaklardaki uyarıları otomatik olarak çekmez veya doğrulamaz. Resmî bağlantıları ayrı açıp kontrol edin.</p>
+</section>
+
+<footer>
+  Veri kaynağı: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>. Tahminler değişebilir.
+  <br>ANKA AERIS — bağımsız test sürümü. Can güvenliği amacıyla tek başına kullanılmamalıdır.
+</footer>
+</main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const names = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"];
+let activeController = null;
+let lastSuccessfulLoad = null;
+
+function weather(code){
+  if(code===0)return ["Açık","☀️"];
+  if([1,2].includes(code))return ["Az bulutlu","🌤️"];
+  if(code===3)return ["Kapalı","☁️"];
+  if([45,48].includes(code))return ["Sisli","🌫️"];
+  if([51,53,55,56,57].includes(code))return ["Çisenti","🌦️"];
+  if([61,63,65,66,67,80,81,82].includes(code))return ["Yağışlı","🌧️"];
+  if([71,73,75,77,85,86].includes(code))return ["Kar yağışlı","🌨️"];
+  if([95,96,99].includes(code))return ["Gök gürültülü fırtına","⛈️"];
+  return ["Değişken","🌡️"];
+}
+function fmtDay(s){
+  const d = new Date(s+"T12:00:00");
+  return Number.isNaN(d.getTime()) ? "Tarih yok" : d.toLocaleDateString("tr-TR",{weekday:"short",day:"numeric",month:"short"});
+}
+function setStatus(message, kind=""){
+  const el=$("status"); el.textContent=message; el.className="status"+(kind?" "+kind:"");
+}
+function clearWeather(){
+  $("temp").textContent="—"; $("condition").textContent="Güncel veri yok"; $("icon").textContent="⚠️";
+  $("feels").textContent="—"; $("humidity").textContent="—"; $("wind").textContent="—"; $("rain").textContent="—";
+  $("updated").textContent="Veri zamanı: güncel veri yok";
+  $("days").replaceChildren(Object.assign(document.createElement("div"),{className:"day",textContent:"Tahmin verisi alınamadı."}));
+  $("risk").className="risk panel unknown"; $("risk").replaceChildren();
+  const t=document.createElement("div"); t.className="risk-title"; t.textContent="Risk değerlendirilemedi";
+  const m=document.createElement("div"); m.className="small"; m.textContent="Güncel veri alınamadığı için risk göstergesi üretilmedi. Bu, tehlike olmadığı anlamına gelmez.";
+  $("risk").append(t,m);
+  lastSuccessfulLoad=null;
+}
+function finiteNumber(value){return typeof value==="number" && Number.isFinite(value);}
+function showRisk(day){
+  const probs=day.precipitation_probability_max||[];
+  const rains=day.precipitation_sum||[];
+  const winds=day.wind_speed_10m_max||[];
+  const validProbs=probs.filter(finiteNumber), validRains=rains.filter(finiteNumber), validWinds=winds.filter(finiteNumber);
+  if(!validProbs.length && !validRains.length && !validWinds.length){
+    $("risk").className="risk panel unknown";
+    $("risk").innerHTML='<div class="risk-title">Risk değerlendirilemedi</div><div>Gerekli tahmin alanları eksik. Resmî duyuruları kontrol edin.</div>';
+    return;
+  }
+  const maxProb=validProbs.length?Math.max(...validProbs):null;
+  const maxRain=validRains.length?Math.max(...validRains):null;
+  const maxWind=validWinds.length?Math.max(...validWinds):null;
+  let cls="risk", title="Deneysel eşiklerde belirgin sinyal yok", msg="Bu sınırlı otomatik tarama bazı eşikleri aşan değer bulmadı. Bu, tehlike olmadığı veya resmî uyarı bulunmadığı anlamına gelmez.";
+  if((maxProb!==null && maxProb>=70)||(maxRain!==null && maxRain>=20)){
+    cls+=" high"; title="Yüksek yağış göstergesi"; msg="Tahminde yüksek yağış olasılığı veya günlük yağış toplamı görüldü. MGM ve AFAD duyurularını kontrol edin; yerel koşullar değişebilir.";
+  }else if(maxWind!==null && maxWind>=50){
+    cls+=" high"; title="Kuvvetli rüzgâr göstergesi"; msg="Tahminde yüksek rüzgâr hızı görüldü. Resmî yerel duyuruları kontrol edin.";
+  }else if((maxProb!==null && maxProb>=40)||(maxWind!==null && maxWind>=35)||(maxRain!==null && maxRain>=10)){
+    cls+=" warn"; title="Takip edilmesi gereken tahmin koşulları"; msg="Tahminde izlemeye değer yağış veya rüzgâr değerleri var. Güncel resmî duyuruları kontrol edin.";
+  }
+  $("risk").className=cls+" panel";
+  $("risk").replaceChildren();
+  const h=document.createElement("div");h.className="risk-title";h.textContent=title;
+  const p=document.createElement("div");p.textContent=msg;
+  const s=document.createElement("div");s.className="small";s.style.marginTop="8px";
+  s.textContent=`Deneysel özet: en yüksek yağış olasılığı ${maxProb===null?"veri yok":"%"+maxProb}; en yüksek günlük yağış ${maxRain===null?"veri yok":maxRain.toFixed(1)+" mm"}; en yüksek rüzgâr ${maxWind===null?"veri yok":Math.round(maxWind)+" km/sa"}.`;
+  $("risk").append(h,p,s);
+}
+async function load(){
+  if(activeController) activeController.abort();
+  activeController=new AbortController();
+  const controller=activeController;
+  const [lat,lon]=$("city").value.split(",").map(Number);
+  const cityName=$("city").selectedOptions[0].text;
+  if(!Number.isFinite(lat)||!Number.isFinite(lon)){clearWeather();setStatus("Konum bilgisi geçersiz.","error");return;}
+  $("refresh").disabled=true; $("city").disabled=true;
+  $("nowPanel").classList.add("loading"); $("nowPanel").setAttribute("aria-busy","true");
+  $("place").textContent=cityName;
+  setStatus("Veriler alınıyor…");
+  const timeout=setTimeout(()=>controller.abort(),12000);
+  try{
+    const params=new URLSearchParams({
+      latitude:String(lat), longitude:String(lon),
+      current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",
+      hourly:"precipitation_probability,precipitation,temperature_2m",
+      daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max",
+      forecast_days:"3", timezone:"auto", wind_speed_unit:"kmh"
+    });
+    const res=await fetch("https://api.open-meteo.com/v1/forecast?"+params.toString(),{signal:controller.signal,cache:"no-store"});
+    if(!res.ok) throw new Error("Hava servisi yanıt vermedi (HTTP "+res.status+").");
+    const d=await res.json();
+    if(!d || !d.current || !d.daily || !Array.isArray(d.daily.time) || !d.daily.time.length) throw new Error("Servisten eksik veya beklenmeyen veri geldi.");
+    const c=d.current, day=d.daily;
+    const required=[c.temperature_2m,c.apparent_temperature,c.relative_humidity_2m,c.wind_speed_10m,c.precipitation,c.weather_code];
+    if(!required.every(v=>v!==null && v!==undefined && (typeof v!=="number" || Number.isFinite(v)))) throw new Error("Güncel ölçümlerde eksik veya geçersiz alan var.");
+    const stamp=new Date(c.time);
+    if(Number.isNaN(stamp.getTime())) throw new Error("Servisin veri zamanı okunamadı.");
+    const ageMinutes=(Date.now()-stamp.getTime())/60000;
+    if(ageMinutes>180 || ageMinutes < -30) throw new Error("Gelen hava verisinin zamanı beklenenden eski veya gelecekte. Eski veri gösterilmedi.");
+    const w=weather(c.weather_code);
+    $("temp").textContent=Math.round(c.temperature_2m)+"°";
+    $("condition").textContent=w[0]; $("icon").textContent=w[1];
+    $("feels").textContent=Math.round(c.apparent_temperature)+"°C";
+    $("humidity").textContent=Math.round(c.relative_humidity_2m)+"%";
+    $("wind").textContent=Math.round(c.wind_speed_10m)+" km/sa";
+    $("rain").textContent=Number(c.precipitation).toFixed(1)+" mm";
+    $("updated").textContent="Servis veri zamanı: "+stamp.toLocaleString("tr-TR",{timeZone:d.timezone})+" · Saat dilimi: "+d.timezone+" · Bu bir meteoroloji istasyonu ölçümü değil, model verisidir.";
+    const days=day.time.map((date,i)=>{
+      const ww=weather(day.weather_code?.[i]);
+      const card=document.createElement("div");card.className="day";
+      const fields=[
+        ["d",fmtDay(date)],["i",ww[1]+" "+ww[0]],
+        ["t",`${Number.isFinite(day.temperature_2m_min?.[i])?Math.round(day.temperature_2m_min[i])+"°":"—"} / ${Number.isFinite(day.temperature_2m_max?.[i])?Math.round(day.temperature_2m_max[i])+"°":"—"}`],
+        ["rain",`Yağış ihtimali ${Number.isFinite(day.precipitation_probability_max?.[i])?"%"+day.precipitation_probability_max[i]:"veri yok"}`],
+        ["small",`${Number.isFinite(day.precipitation_sum?.[i])?day.precipitation_sum[i].toFixed(1)+" mm":"Veri yok"} günlük yağış`]
+      ];
+      for(const [cl,txt] of fields){const el=document.createElement("div");el.className=cl;el.textContent=txt;card.append(el);}
+      return card;
+    });
+    $("days").replaceChildren(...days);
+    showRisk(day);
+    lastSuccessfulLoad=Date.now();
+    setStatus("Veriler alındı. Tahminler değişebilir; resmî uyarıları ayrıca kontrol edin.","success");
+  }catch(e){
+    if(controller.signal.aborted && activeController!==controller) return;
+    clearWeather();
+    const message=controller.signal.aborted?"İstek zaman aşımına uğradı. İnternet bağlantısını kontrol edip tekrar deneyin.":(e?.message||"Bilinmeyen bir veri hatası oluştu.");
+    setStatus("Veri alınamadı: "+message,"error");
+  }finally{
+    clearTimeout(timeout);
+    if(activeController===controller){
+      $("refresh").disabled=false; $("city").disabled=false;
+      $("nowPanel").classList.remove("loading"); $("nowPanel").setAttribute("aria-busy","false");
+      activeController=null;
+    }
+  }
+}
+$("refresh").addEventListener("click",load);
+$("city").addEventListener("change",load);
+load();
+</script>
+</body>
+</html>
