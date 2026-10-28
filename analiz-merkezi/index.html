@@ -12,8 +12,8 @@
 <body>
 <header><div class="wrap" style="padding:0 2px"><small>ANKA PROJECTS · LAB</small><h1>ANKA Akıllı Analiz Merkezi</h1><div class="muted">Tüm projeler için saha kaydı, veri düzenleme ve analiz hazırlığı</div></div></header>
 <main class="wrap">
-<div class="stats"><div class="stat"><b id="projectCount">12</b><span>Proje başlığı</span></div><div class="stat"><b id="recordCount">0</b><span>Bu cihazdaki kayıt</span></div><div class="stat"><b>v0.1</b><span>İlk prototip</span></div></div>
-<h2 class="section-title">Proje seç</h2><div class="projects" id="projects"></div>
+<div class="stats"><div class="stat"><b id="projectCount">13</b><span>Proje başlığı</span></div><div class="stat"><b id="recordCount">0</b><span>Bu cihazdaki kayıt</span></div><div class="stat"><b>v0.1</b><span>İlk prototip</span></div></div>
+<h2 class="section-title">Proje seç</h2><section class="panel" style="margin-bottom:12px"><strong>ANKA AERIS · Hava ve Risk Gözlem</strong><p class="muted">AERIS’in bağımsız gözlem ve test platformunu aç; analiz kayıtlarını da aşağıdaki proje listesinde tut.</p><div class="actions"><a class="btn" href="https://anka-aeris-81.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none">ANKA AERIS sitesini aç ↗</a></div></section><div class="projects" id="projects"></div>
 <section class="panel" id="cloudAuth" style="margin:18px 0">
 <h2 class="section-title" style="margin-top:0">Güvenli ekip girişi</h2>
 <p class="muted">E-posta ile tek kullanımlık giriş bağlantısı gönderilir. Şifre istemeyiz. Giriş yapmadan bulut verilerine erişilmez.</p>
@@ -53,7 +53,7 @@
 </main>
 <script>
 const projects=[
-["ANKA HYDRA","Araç ailesi ve prototip"],["ANKA D-POWER","Motor verimliliği"],["ANKA ASI-01 PRO","Akıllı tarım"],["ZEMRA","Deprem ve yapı izleme"],["ANKA SEL","Sel gözlemi ve erken uyarı"],["ANKA VOLKAN","Volkanik risk gözlemi"],["ANKA ÇIĞ","Çığ riski"],["ANKA RAY-DİRENÇ","Ray sıcaklığı ve deformasyon"],["ANKA REWALK","Hareket destek sistemi"],["ANKA CARE","Bakım ve sağlık destek sistemi"],["ANKA DORSE FOAM-GUARD","Ticari araç darbe koruması"],["ANKA ARAZI","Arazi odaklı proje"]];
+["ANKA HYDRA","Araç ailesi ve prototip"],["ANKA D-POWER","Motor verimliliği"],["ANKA ASI-01 PRO","Akıllı tarım"],["ZEMRA","Deprem ve yapı izleme"],["ANKA SEL","Sel gözlemi ve erken uyarı"],["ANKA VOLKAN","Volkanik risk gözlemi"],["ANKA ÇIĞ","Çığ riski"],["ANKA RAY-DİRENÇ","Ray sıcaklığı ve deformasyon"],["ANKA REWALK","Hareket destek sistemi"],["ANKA CARE","Bakım ve sağlık destek sistemi"],["ANKA DORSE FOAM-GUARD","Ticari araç darbe koruması"],["ANKA ARAZI","Arazi odaklı proje"],["ANKA AERIS","Hava ve risk gözlem"]];
 const $=id=>document.getElementById(id); let selected=projects[0][0];
 const read=()=>{try{const v=JSON.parse(localStorage.getItem("ankaAnalizRecords")||"[]");return Array.isArray(v)?v.filter(r=>r&&typeof r==="object"&&typeof r.id==="string"&&typeof r.project==="string"&&typeof r.observation==="string"):[]}catch{return[]}};
 const save=rows=>{try{localStorage.setItem("ankaAnalizRecords",JSON.stringify(rows));return true}catch(err){alert("Kayıt kaydedilemedi. Tarayıcı depolama alanı dolu veya kapalı olabilir. Önce JSON yedeği alıp eski kayıtları dışa aktar.");return false}};
