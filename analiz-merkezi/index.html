@@ -114,12 +114,13 @@ async function loadCloudProjects() {
     return false;
   }
   cloudProjects=data||[];
+  const projectNames=[...new Set([...cloudProjects.map(p=>p.name),...projects.map(p=>p[0])])].sort((a,b)=>a.localeCompare(b,"tr"));
   const previous=byId("project").value;
-  byId("project").innerHTML=cloudProjects.map(p=>'<option value="'+escHtml(p.name)+'">'+escHtml(p.name)+'</option>').join("");
-  if(cloudProjects.some(p=>p.name===previous)) byId("project").value=previous;
+  byId("project").innerHTML=projectNames.map(name=>'<option value="'+escHtml(name)+'">'+escHtml(name)+'</option>').join("");
+  if(projectNames.includes(previous)) byId("project").value=previous;
   const oldFilter=byId("projectFilter").value;
-  byId("projectFilter").innerHTML='<option value="">Tüm projeler</option>'+cloudProjects.map(p=>'<option value="'+escHtml(p.name)+'">'+escHtml(p.name)+'</option>').join("");
-  if(cloudProjects.some(p=>p.name===oldFilter)) byId("projectFilter").value=oldFilter;
+  byId("projectFilter").innerHTML='<option value="">Tüm projeler</option>'+projectNames.map(name=>'<option value="'+escHtml(name)+'">'+escHtml(name)+'</option>').join("");
+  if(projectNames.includes(oldFilter)) byId("projectFilter").value=oldFilter;
   return true;
 }
 async function loadCloudRecords() {
