@@ -18,13 +18,13 @@ async function load(){
  const base='https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&forecast_days=2&timezone=Europe%2FIstanbul&cell_selection=land';
  try{
   // Ana meteoroloji isteği: kar derinliğini ayrı sorguluyoruz ki tek bir eksik alan tüm veriyi durdurmasın.
-  const response=await fetch(base+'&current=temperature_2m,wind_speed_10m&hourly=snowfall,freezing_level_height,precipitation_probability');
+  const response=await fetch(base+'&current=temperature_2m,wind_speed_10m&hourly=snowfall,precipitation_probability');
   if(!response.ok)throw Error('Meteoroloji API '+response.status);
   const d=await response.json(),h=d.hourly||{},times=h.time||[];
   const now=d.current?.time||'',found=times.findIndex(t=>t>=now),idx=found>=0?found:0;
-  const temp=Number(d.current?.temperature_2m),wind=Number(d.current?.wind_speed_10m),freeze=Number(h.freezing_level_height?.[idx]);
+  const temp=Number(d.current?.temperature_2m),wind=Number(d.current?.wind_speed_10m);
   const fresh=(h.snowfall||[]).slice(idx,idx+12).reduce((a,v)=>a+(Number(v)||0),0);
-  $('temp').textContent=fmt(temp,1)+' °C';$('wind').textContent=fmt(wind,0)+' km/sa';$('freezing').textContent=fmt(freeze,0)+' m';$('snowfall').textContent=fmt(fresh,1)+' cm';
+  $('temp').textContent=fmt(temp,1)+' °C';$('wind').textContent=fmt(wind,0)+' km/sa';$('freezing').textContent='Model verisi yok';$('snowfall').textContent=fmt(fresh,1)+' cm';
   chart((h.snowfall||[]).slice(idx,idx+12).map(v=>Number(v)||0));
   $('chartNote').textContent='Önümüzdeki 12 saat için model kar yağışı toplamı. Kar tabakası dayanımını veya çığ tehlikesini göstermez.';
   $('weatherState').textContent='Bağlantılı';$('status').textContent='Meteoroloji modeli verileri alındı · '+new Date().toLocaleString('tr-TR')+'.';
