@@ -13,20 +13,36 @@ function chart(values){const max=Math.max(.1,...values.filter(Number.isFinite));
 async function load(){
  const name=$('location').selectedOptions[0].textContent,[lat,lon]=$('location').value.split(',').map(Number);
  $('place').textContent=name;$('maplabel').textContent=name+' · model konumu';$('coords').textContent=lat.toFixed(3)+', '+lon.toFixed(3);
- $('status').textContent='Open-Meteo hava modelinden veriler alınıyor…';$('weatherState').textContent='Yükleniyor';
- const url='https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&current=temperature_2m,wind_speed_10m&hourly=snow_depth,snowfall,freezing_level_height,precipitation_probability&forecast_days=2&timezone=Europe%2FIstanbul';
+ $('status').textContent='Meteoroloji modeli sorgulanıyor…';$('weatherState').textContent='Yükleniyor';
+ $('snowval').textContent='…';$('temp').textContent='…';$('wind').textContent='…';$('freezing').textContent='…';$('snowfall').textContent='…';
+ const base='https://api.open-meteo.com/v1/forecast?latitude='+lat+'&longitude='+lon+'&forecast_days=2&timezone=Europe%2FIstanbul&cell_selection=land';
  try{
-  const response=await fetch(url);if(!response.ok)throw Error('API '+response.status);
+  // Ana meteoroloji isteği: kar derinliğini ayrı sorguluyoruz ki tek bir eksik alan tüm veriyi durdurmasın.
+  const response=await fetch(base+'&current=temperature_2m,wind_speed_10m&hourly=snowfall,freezing_level_height,precipitation_probability');
+  if(!response.ok)throw Error('Meteoroloji API '+response.status);
   const d=await response.json(),h=d.hourly||{},times=h.time||[];
-  const now=d.current?.time||'',idx=Math.max(0,times.findIndex(t=>t>=now));
-  const snow=Number(h.snow_depth?.[idx]),temp=Number(d.current?.temperature_2m),wind=Number(d.current?.wind_speed_10m),freeze=Number(h.freezing_level_height?.[idx]);
+  const now=d.current?.time||'',found=times.findIndex(t=>t>=now),idx=found>=0?found:0;
+  const temp=Number(d.current?.temperature_2m),wind=Number(d.current?.wind_speed_10m),freeze=Number(h.freezing_level_height?.[idx]);
   const fresh=(h.snowfall||[]).slice(idx,idx+12).reduce((a,v)=>a+(Number(v)||0),0);
-  $('snowval').textContent=Number.isFinite(snow)?fmt(snow*100,0)+' cm':'Veri yok';$('snowNote').textContent='Model zamanı: '+(now||'—')+' · kar derinliği grid tahmini';
   $('temp').textContent=fmt(temp,1)+' °C';$('wind').textContent=fmt(wind,0)+' km/sa';$('freezing').textContent=fmt(freeze,0)+' m';$('snowfall').textContent=fmt(fresh,1)+' cm';
   chart((h.snowfall||[]).slice(idx,idx+12).map(v=>Number(v)||0));
-  $('chartNote').textContent='Önümüzdeki 12 saat için model kar yağışı toplamı. Kar tabakası dayanımı ve çığ tehlikesini göstermez.';
-  $('weatherState').textContent='Bağlantılı';$('status').textContent='Hava modeli verileri güncellendi · '+new Date().toLocaleString('tr-TR')+'. Bu veriler saha sensörü ölçümü değildir.';
- }catch(e){$('weatherState').textContent='Bağlantı hatası';$('status').textContent='Open-Meteo verisi alınamadı. Bağlantıyı kontrol edip yeniden deneyin.';$('chartNote').textContent='Model verisi alınamadı.';}
+  $('chartNote').textContent='Önümüzdeki 12 saat için model kar yağışı toplamı. Kar tabakası dayanımını veya çığ tehlikesini göstermez.';
+  $('weatherState').textContent='Bağlantılı';$('status').textContent='Meteoroloji modeli verileri alındı · '+new Date().toLocaleString('tr-TR')+'.';
+  // Kar derinliği ayrı ve isteğe bağlı: bu alan başarısız olsa da sıcaklık/rüzgâr/yağış verileri görünür kalır.
+  try{
+   const snowResponse=await fetch(base+'&hourly=snow_depth');
+   if(!snowResponse.ok)throw Error('Kar derinliği '+snowResponse.status);
+   const snowData=await snowResponse.json(),snowTimes=snowData.hourly?.time||[],snowIndex=Math.max(0,snowTimes.findIndex(t=>t>=now));
+   const depth=Number(snowData.hourly?.snow_depth?.[snowIndex]);
+   $('snowval').textContent=Number.isFinite(depth)?fmt(depth*100,0)+' cm':'Modelde yok';
+   $('snowNote').textContent=Number.isFinite(depth)?'Open-Meteo grid modeli · '+(snowTimes[snowIndex]||''):'Bu konum/saat için kar derinliği sağlanmadı';
+  }catch(snowError){
+   $('snowval').textContent='Veri yok';$('snowNote').textContent='Kar derinliği servisi şu an yanıt vermedi; diğer hava verileri çalışıyor.';
+  }
+ }catch(e){
+  $('weatherState').textContent='Bağlantı hatası';$('status').textContent='Hava modeli alınamadı ('+e.message+'). Yenile düğmesiyle tekrar deneyin.';
+  $('snowval').textContent='— cm';$('snowNote').textContent='Model verisi alınamadı.';$('chartNote').textContent='Model verisi alınamadı.';
+ }
 }
 $('refresh').addEventListener('click',load);$('location').addEventListener('change',load);load();
 </script></body></html>
